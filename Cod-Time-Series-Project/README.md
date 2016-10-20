@@ -26,4 +26,4 @@ In **Week 4** I plan to write the scripts necessary to build loci for each indiv
 
 In **Week 5** I plan to write the scripts necessary to assemble a catalog and match individuals to the catalog.
 
-During the rest of the quarter, I plan to make analyze differences between cohorts, see if they match with environmetnal data, and align them to the Atlantic genome to see whether any sorting alleles occur within genes that regulate temperature.
+During the rest of the quarter, I plan to analyze differences between cohorts, see if they match with environmetnal data, and align them to the Atlantic genome to see whether any sorting alleles occur within genes that regulate temperature.
