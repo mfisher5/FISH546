@@ -12,7 +12,7 @@ The **goal** of this project is to measure these differences using RADseq data o
 
 ### Directory Structure ###
 
-Within my class repo, I have a directory for this project. Within this directory, I made a directory for **Data** that has directories for raw data, processed data,and  metadata. Raw data is never altered and stored in its own directory to protect it. Metadata includes information on the individual fish, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. 
+Within my class repo, I have a directory for this project. Within this directory, I made a directory for **Data** that has directories for raw data, processed data, and  metadata. Raw data is never altered and stored in its own directory to protect it. Metadata includes information on the individual fish, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. 
 
 Within the project directory, I also made a directory for **Analyses**. This directory has a directory for fast qc results, which describe the quality of the sequence data. As I make progress working my data through the pipeline, I will make directories here for different types of analyses.
 
