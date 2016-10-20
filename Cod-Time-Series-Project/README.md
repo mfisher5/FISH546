@@ -12,16 +12,18 @@ The **goal** of this project is to measure these differences using RADseq data o
 
 ### Directory Structure ###
 
-Within my class repo, I have a directory for this project. Within this directory, I made a directory for **data** that has directories for raw data, processed data, metadata, and fastqc results. Raw data is never altered and stored in its own directory as a back-up. Metadata includes information on the individual fish, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. Fast qc results describe the sequencey quality of the data.
+Within my class repo, I have a directory for this project. Within this directory, I made a directory for **Data** that has directories for raw data, processed data,and  metadata. Raw data is never altered and stored in its own directory to protect it. Metadata includes information on the individual fish, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. 
 
-Within the project directory, I also made a directory for 
+Within the project directory, I also made a directory for **Analyses**. This directory has a directory for fast qc results, which describe the quality of the sequence data. As I make progress working my data through the pipeline, I will make directories here for different types of analyses.
+
+Within the project directory, I also made a **Notebooks** directory that contains all of my Jupyter notebooks for the project, and their checkpoints.
+
+Within the project directory, I also made a **Scripts** directory that will eventually contain any scripts associated with the project. I expect to have a custom script for my general pipeline by the end of the quarter.
 
 ### Project Timeline ###
 
-In **Week 4** I plan to
+In **Week 4** I plan to write the scripts necessary to build loci for each individual.
 
-In **Week 5** I plan to
+In **Week 5** I plan to write the scripts necessary to assemble a catalog and match individuals to the catalog.
 
-
-
-This is the repository for storing data, scripts, analyses, and notebooks for my class project comparing the population genetics of different cohorts of Pacific cod.
+During the rest of the quarter, I plan to make analyze differences between cohorts, see if they match with environmetnal data, and align them to the Atlantic genome to see whether any sorting alleles occur within genes that regulate temperature.
