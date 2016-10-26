@@ -1,6 +1,11 @@
 ###--- Natalie's Python Pipeline for Processing RAD data ---###
 # Pacific Cod Time Series Project #
 
+
+### WHEN RUNNING THIS SCRIPT, YOUR INPUTS ARE
+### python  [pipeline filename] [barcodes & samples textfile] [start directory] [end directory]
+### python pypipe_ustacks.py barcodes_samplenames.txt raw_data processed_data
+
 # call necessary modules
 
 import subprocess # call module that will run shell scripts from this python script
@@ -30,6 +35,7 @@ for line in myfile:						   # loop through each line
 	newstring = "mv" + "\t" + barcodefile + "\t" + samplefile + "\n"
 	# print newstring  # troubleshooting loop
 	new_file.write(newstring)
+
 myfile.close()
 new_file.close()
 
@@ -45,10 +51,14 @@ subprocess.call(['sh new_filenames1.txt'], shell=True)
 
 # ``ustacks`` requires an arbitrary integer for every sample, although unclear how it gets used as it does not become the name of the file
 
-ID_int = 001
+# cd to one folder above where you are calling the fq files and one folder above where you are storing your results
+subprocess.call(['cd /users/natalielowell/Git-repos/FISH546/Cod-Time-Series-Project/Data/'], shell=True)
+dirfrom = sys.argv[2]
+
+ID_int = 001								# start integer counter
 for line in new_filenames1.txt: 			#for each line in the barcode file	
 	linelist=line.strip().split()	
-	sampID = linelist[2] 		#save the third object as "sampID"
+	sampID = linelist[1] 					#save the second object as "sampID"
 	if ID_int < 10: 
 		ustacks_code = "ustacks -t gzfasta -f samplesT146/" + sampID + " -r -d -o stacks -i 00" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
 								#create a line of code for ustacks that includes the new sample ID (with 2 leading 0s)
@@ -60,6 +70,7 @@ for line in new_filenames1.txt: 			#for each line in the barcode file
 								#create a line of code for ustacks that includes the new sample ID (with no leading 0s)
 	newfile.write(ustacks_code)	#append this new line of code to the output file
 	ID_int += 1
+
 myfile.close()
 newfile.close()
 
