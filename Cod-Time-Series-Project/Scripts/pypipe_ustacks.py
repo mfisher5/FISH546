@@ -36,7 +36,7 @@ new_file.close()
 subprocess.call(['cd /users/natalielowell/Git-repos/FISH546/Cod-Time-Series-Project/Data/raw_data'], shell=True)
 
 # run the script you just made as a shell script to rename your files
-subprocess.call([new_filenames1.txt], shell=True)
+subprocess.call(['pwd'], shell=True)
 
 
 
