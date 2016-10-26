@@ -7,14 +7,12 @@ import subprocess # call module that will run shell scripts from this python scr
 import sys 
 
 
-### (1) - ``process_radtags`` 
-# I didn't have to run this on my cod data, so skip this for now and get deets from Mary later #
+### ``ustacks``
 
-
-### (2) - ``ustacks``
 # **PURPOSE*** This step aligns identical RAD tags within an individual
 # **Input** fastq or gzfastq files
 # **Output** 4 files - alleles, modules, snps, tags
+
 
 # ---A) Rename your files by the sample name
 
@@ -33,6 +31,13 @@ for line in myfile:						   # loop through each line
 	new_file.write(newstring)
 myfile.close()
 new_file.close()
+
+# change your working directory to the folder that includes with absolute path
+subprocess.call(['cd /users/natalielowell/Git-repos/FISH546/Cod-Time-Series-Project/Data/raw_data'], shell=True)
+
+# run the script you just made as a shell script to rename your files
+subprocess.call([new_filenames1.txt], shell=True)
+
 
 
 
