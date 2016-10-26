@@ -58,18 +58,22 @@ subprocess.call(['cd /users/natalielowell/Git-repos/FISH546/Cod-Time-Series-Proj
 dirfrom = sys.argv[2]
 dirto = sys.argv[3]
 
+
+newfile = open("ustacks_shell.txt", "w")	 # make ustacks shell script to run through terminal
+myfile = open("new_filenames1.txt", "r")	#open the file with a list of barcodes + sample IDs
+
 ID_int = 001								# start integer counter
-for line in new_filenames1.txt: 			#for each line in the barcode file	
+for line in myfile: 			#for each line in the barcode file	
 	linelist=line.strip().split()	
-	sampID = linelist[1] 					#save the second object as "sampID"
+	sampID = linelist[2] 					#save the second object as "sampID"
 	if ID_int < 10: 
-		ustacks_code = "ustacks -t gzfasta -f " + dirfrom + " " + sampID + " -r -d -o " + dirto + " " + " -i 00" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+		ustacks_code = "ustacks -t gzfasta -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i 00" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
 								#create a line of code for ustacks that includes the new sample ID (with 2 leading 0s)
 	elif ID_int >= 10 & ID_int < 100: 
-		ustacks_code = "ustacks -t gzfasta -f " + dirfrom + " " + sampID + " -r -d -o " + dirto + " " + " -i 0" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+		ustacks_code = "ustacks -t gzfasta -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i 0" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
 								#create a line of code for ustacks that includes the new sample ID (with 1 leading 0)
 	else: 
-		ustacks_code = "ustacks -t gzfasta -f " + dirfrom + " " + sampID + " -r -d -o " + dirto + " " + " -i " + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+		ustacks_code = "ustacks -t gzfasta -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i " + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
 								#create a line of code for ustacks that includes the new sample ID (with no leading 0s)
 	newfile.write(ustacks_code)	#append this new line of code to the output file
 	ID_int += 1
@@ -78,7 +82,7 @@ myfile.close()
 newfile.close()
 
 # run this new script through the terminal
-subprocess.call(['sh '], shell=True)
+subprocess.call(['sh ustacks_shell.txt'], shell=True)
 
 
 
