@@ -53,20 +53,23 @@ subprocess.call(['sh new_filenames1.txt'], shell=True)
 
 # cd to one folder above where you are calling the fq files and one folder above where you are storing your results
 subprocess.call(['cd /users/natalielowell/Git-repos/FISH546/Cod-Time-Series-Project/Data/'], shell=True)
+
+# name your from and to directories that will go in each line of your ustacks shell script
 dirfrom = sys.argv[2]
+dirto = sys.argv[3]
 
 ID_int = 001								# start integer counter
 for line in new_filenames1.txt: 			#for each line in the barcode file	
 	linelist=line.strip().split()	
 	sampID = linelist[1] 					#save the second object as "sampID"
 	if ID_int < 10: 
-		ustacks_code = "ustacks -t gzfasta -f samplesT146/" + sampID + " -r -d -o stacks -i 00" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+		ustacks_code = "ustacks -t gzfasta -f " + dirfrom + " " + sampID + " -r -d -o " + dirto + " " + " -i 00" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
 								#create a line of code for ustacks that includes the new sample ID (with 2 leading 0s)
 	elif ID_int >= 10 & ID_int < 100: 
-		ustacks_code = "ustacks -t gzfasta -f samplesT146/" + sampID + " -r -d -o stacks -i 0" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+		ustacks_code = "ustacks -t gzfasta -f " + dirfrom + " " + sampID + " -r -d -o " + dirto + " " + " -i 0" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
 								#create a line of code for ustacks that includes the new sample ID (with 1 leading 0)
 	else: 
-		ustacks_code = "ustacks -t gzfasta -f samplesT146/" + sampID + " -r -d -o stacks -i " + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+		ustacks_code = "ustacks -t gzfasta -f " + dirfrom + " " + sampID + " -r -d -o " + dirto + " " + " -i " + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
 								#create a line of code for ustacks that includes the new sample ID (with no leading 0s)
 	newfile.write(ustacks_code)	#append this new line of code to the output file
 	ID_int += 1
@@ -74,6 +77,8 @@ for line in new_filenames1.txt: 			#for each line in the barcode file
 myfile.close()
 newfile.close()
 
+# run this new script through the terminal
+subprocess.call(['sh '], shell=True)
 
 
 
