@@ -27,6 +27,6 @@ Within the project directory, I also made a **Scripts** directory that will even
 
 **Week 4 Goal** is it to have a script for running ustacks.
 
-In Week **4** I have made a custom python script for ustacks that can be run at the command line with a few arguments. The script renames files from barcode names to sample names, then creates a shell script to run each sample through the command line, then runs the shell script creating 4 output files per input file. I've also started on making the custom python script for cstacks. These scripts are located in my Scripts directory.
+In Week **4** I have made a custom python script for ustacks that can be run at the command line with a few arguments. The script renames files from barcode names to sample names, then creates a shell script to run each sample through the command line, then runs the shell script creating 4 output files per input file. I've also started on making the custom python script for cstacks. These scripts are located in my Scripts directory. I just moved a few sample files of data to the Owl server so that Steven can run the scripts to see how they work, but I haven't yet changed the file path names so that they can work from Owl.
 
 **Week 5 Goal** is to have a script for running cstacks.
