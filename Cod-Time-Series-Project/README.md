@@ -10,6 +10,8 @@ A first test of this hypothesis would be to see if different cohorts of Pacific 
 
 The **goal** of this project is to measure these differences using RADseq data on cohorts of cod from the Salish Sea from 2005, 2009, 2010, and 2014. The specific objectives are **(1)** to build loci de novo for each individual, **(2)** assemble a catalog of loci with a subset of individuals, **(3)** estimate heterozygosity and Fst between cohorts, **(4)** test to see whether particular alleles sort with cohorts associated with particular temperature regimes, and **(5)** if any loci do sort, align them to the Atlantic cod (*Gadus morhua*) genome to see whether these loci occur within genes associated with temperature regulation.
 
+I am analyzing this data as part of FISH546 class at the University of Washington. Because I am just familiarizing myself with Stacks now, I I hope to make it through objectives 1-3 by the end of the quarter, and to create scripts that are clearly annotated and that I can use easily in the future with other RAD seq projects. 
+
 ### Directory Structure ###
 
 Within my class repo, I have a directory for this project. Within this directory, I made a directory for **Data** that has directories for raw data, processed data, and  metadata. Raw data is never altered and stored in its own directory to protect it. Metadata includes information on the individual fish, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. 
