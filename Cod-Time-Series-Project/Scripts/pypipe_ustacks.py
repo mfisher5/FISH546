@@ -1,6 +1,11 @@
 ###--- Natalie's Python Pipeline for Processing RAD data ---###
 # Pacific Cod Time Series Project #
 
+
+### WHEN RUNNING THIS SCRIPT, YOUR INPUTS ARE
+### python  [pipeline filename] [barcodes & samples textfile] [start directory] [end directory]
+### python pypipe_ustacks.py barcodes_samplenames.txt raw_data processed_data
+
 # call necessary modules
 
 import subprocess # call module that will run shell scripts from this python script
@@ -12,6 +17,7 @@ import sys
 # **PURPOSE*** This step aligns identical RAD tags within an individual
 # **Input** fastq or gzfastq files
 # **Output** 4 files - alleles, modules, snps, tags
+
 
 
 # ---A) Rename your files by the sample name
@@ -29,6 +35,7 @@ for line in myfile:						   # loop through each line
 	newstring = "mv" + "\t" + barcodefile + "\t" + samplefile + "\n"
 	# print newstring  # troubleshooting loop
 	new_file.write(newstring)
+
 myfile.close()
 new_file.close()
 
@@ -40,20 +47,51 @@ subprocess.call(['sh new_filenames1.txt'], shell=True)
 
 
 
+# ---B) Make shell script to run all samples through command line through ``ustacks``
+
+# ``ustacks`` requires an arbitrary integer for every sample, although unclear how it gets used as it does not become the name of the file
+
+# cd to one folder above where you are calling the fq files and one folder above where you are storing your results
+subprocess.call(['cd /users/natalielowell/Git-repos/FISH546/Cod-Time-Series-Project/Data/'], shell=True)
+
+# name your 'from' and 'to' directories that will go in each line of your ustacks shell script
+dirfrom = sys.argv[2]
+dirto = sys.argv[3]
+
+
+newfile = open("ustacks_shell.txt", "w")	 # make ustacks shell script to run through terminal
+myfile = open("new_filenames1.txt", "r")	#open the file with a list of barcodes + sample IDs
+
+newfile.write('cd /users/natalielowell/Git-repos/FISH546/Cod-Time-Series-Project/Data/' + '\n')
+ID_int = 001								# start integer counter
+for line in myfile: 			#for each line in the barcode file	
+	linelist=line.strip().split()	
+	sampID = linelist[2] 					#save the second object as "sampID"
+	if ID_int < 10: 
+		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i 00" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+								#create a line of code for ustacks that includes the new sample ID (with 2 leading 0s)
+	elif ID_int >= 10 & ID_int < 100: 
+		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i 0" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+								#create a line of code for ustacks that includes the new sample ID (with 1 leading 0)
+	else: 
+		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i " + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+								#create a line of code for ustacks that includes the new sample ID (with no leading 0s)
+	newfile.write(ustacks_code)	#append this new line of code to the output file
+	ID_int += 1
+
+myfile.close()
+newfile.close()
+
+# run this new script through the terminal
+subprocess.call(['sh ustacks_shell.txt'], shell=True)
 
 
 
 
 
 
-# ---B) Produce a shell script that will run ``ustacks`` on all of your files, given desired parameters
 
 
 
 
 
-
-
-
-# Simple command
-# subprocess.call(['ls'], shell=True)
