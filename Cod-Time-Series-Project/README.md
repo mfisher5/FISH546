@@ -22,7 +22,8 @@ Within the project directory, I also made a **Notebooks** directory that contain
 
 Within the project directory, I also made a **Scripts** directory that will eventually contain any scripts associated with the project. I expect to have a custom script for each stage of the Stacks pipeline by the end of the quarter. 
 
-### Project Timeline & Progress ###
+
+## Project Timeline & Progress ##
 
 **Week 4 Goal** is it to have a script for running ustacks.
 
