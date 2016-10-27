@@ -10,22 +10,22 @@ A first test of this hypothesis would be to see if different cohorts of Pacific 
 
 The **goal** of this project is to measure these differences using RADseq data on cohorts of cod from the Salish Sea from 2005, 2009, 2010, and 2014. The specific objectives are **(1)** to build loci de novo for each individual, **(2)** assemble a catalog of loci with a subset of individuals, **(3)** estimate heterozygosity and Fst between cohorts, **(4)** test to see whether particular alleles sort with cohorts associated with particular temperature regimes, and **(5)** if any loci do sort, align them to the Atlantic cod (*Gadus morhua*) genome to see whether these loci occur within genes associated with temperature regulation.
 
-I am analyzing this data as part of FISH546 class at the University of Washington. Because I am just familiarizing myself with Stacks now, I I hope to make it through objectives 1-3 by the end of the quarter, and to create scripts that are clearly annotated and that I can use easily in the future with other RAD seq projects. 
+I am analyzing this data as part of FISH546 class at the University of Washington. Because I am just familiarizing myself with Stacks now, I I hope to make it through at least **objectives 1-3** by the end of the quarter, and in doing so to create scripts that are clearly annotated and that I can use easily in the future with other RAD seq projects. 
 
 ### Directory Structure ###
 
-Within my class repo, I have a directory for this project. Within this directory, I made a directory for **Data** that has directories for raw data, processed data, and  metadata. Raw data is never altered and stored in its own directory to protect it. Metadata includes information on the individual fish, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. 
+Within my class repo, I have a directory for this project. Within this directory, I made a directory for **Data** that has directories for raw data, processed data, and  metadata. Raw data is never altered and stored in its own directory to protect it. Metadata includes information on the individual fish, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. However, my data files are too large so I stored 3 (of ~100) on the Owl server to use in class.
 
 Within the project directory, I also made a directory for **Analyses**. This directory has a directory for fast qc results, which describe the quality of the sequence data. As I make progress working my data through the pipeline, I will make directories here for different types of analyses.
 
 Within the project directory, I also made a **Notebooks** directory that contains all of my Jupyter notebooks for the project, and their checkpoints.
 
-Within the project directory, I also made a **Scripts** directory that will eventually contain any scripts associated with the project. I expect to have a custom script for my general pipeline by the end of the quarter.
+Within the project directory, I also made a **Scripts** directory that will eventually contain any scripts associated with the project. I expect to have a custom script for each stage of the Stacks pipeline by the end of the quarter. 
 
-### Project Timeline ###
+### Project Timeline & Progress ###
 
-In **Week 4** I plan to write the scripts necessary to build loci for each individual.
+**Week 4 Goal** is it to have a script for running ustacks.
 
-In **Week 5** I plan to write the scripts necessary to assemble a catalog and match individuals to the catalog.
+In Week **4** I have made a custom python script for ustacks that can be run at the command line with a few arguments. The script renames files from barcode names to sample names, then creates a shell script to run each sample through the command line, then runs the shell script creating 4 output files per input file. I've also started on making the custom python script for cstacks. These scripts are located in my Scripts directory.
 
-During the rest of the quarter, I plan to analyze differences between cohorts, see if they match with environmetnal data, and align them to the Atlantic genome to see whether any sorting alleles occur within genes that regulate temperature.
+**Week 5 Goal** is to have a script for running cstacks.
