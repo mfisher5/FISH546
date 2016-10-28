@@ -1,0 +1,1 @@
+This directory is for storing data that has made it through part of the STACKS pipeline. For example, data that has been through processed_radtags and now has barcodes trimmed.
