@@ -17,23 +17,42 @@ Much of the data analysis work will be done using the [Stacks pipeline](http://c
 
 ``process_radtags`` is a program that renames each file by the barcode of the sample and allows you to filter the data by quality thresholds. The input is a fasta file, and the output is a fastq file. The previous user of my data already ran it through ``process_radtags``.
 
+<br>
+![image](http://catchenlab.life.illinois.edu/stacks/manual/process_radtags.png)
+
+<br>
+
 ``ustacks`` is a program that identifies unique loci by matching sequence reads into "stacks." Then, ``ustacks`` allows you to assign a certain number of mismatches which you use to call SNPs within an individual. The input for ``ustacks`` is the fastq file, and the output is 4 files: models, snps, tags, and alleles files.
 
 ``cstacks`` is a program that creates a catalog of SNPs that you will use to genotype your data. The input to ``cstacks`` is a subset of your samples' output from ``ustacks``. In our lab group, we choose 10 samples that represent variation (across time or space) and that produced the highest number of sequence reads. The output of ``cstacks`` is 3 files per sample: catalog alleles, catalog tags, and catalog SNPs.
 
-``sstacks`` is a program that produces matches of each sample's reads to the catalog of SNPs. The input is the output of ``cstacks`` and the output is one file of the matches. 
+``sstacks`` is a program that produces matches of each sample's reads to the catalog of SNPs. The input is the output of ``cstacks`` and the output is one file of the matches.
 
-``populations`` is a program that 
+<br>
 
-I am analyzing this data as part of FISH546 class at the University of Washington. Because I am just familiarizing myself with Stacks now, I I hope to make it through at least **objectives 1-3** by the end of the quarter, and in doing so to create scripts that are clearly annotated and that I can use easily in the future with other RADseq projects. 
+![image](http://catchenlab.life.illinois.edu/stacks/manual/denovo_pipeline.png)
+
+<br>
+
+``populations`` is a program that produces Fst and heterozygosity estimates, as well as a table of haplotype calls and summary statistics. The input file is the matches file, and the output is two summary statistic files, the haplotype file, and a populations file.
+
+<br>
+
+![image](http://catchenlab.life.illinois.edu/stacks/manual/stacks_pipeline.png)
+
+<br>
+
+In our lab, we run RAD data through this pipeline and then return to ``cstacks`` and change the way the program calls heterozygotes. Then, we rerun ``sstacks`` and ``populations``. We also have several in-house scripts we use to add additional quality filtering to the final genotype calls.
+
+Because this is my first time working with Stacks, I I hope to make it through at least **objectives 1-3** by the end of the quarter, and in doing so to create scripts that are clearly annotated and that I can use easily in the future with other RADseq projects. 
 
 ##### Directory Structure #####
 
 Within my class repo, I have a directory for this project. Within this directory, I made a directory for **Data** that has directories for raw data, processed data, and  metadata. Raw data is never altered and stored in its own directory to protect it. Metadata includes information on the individual fish, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. However, my data files are too large so I stored 3 (of ~100) on the Owl server to use in class as an example.
 
-Within the project directory, I also made a directory for **Analyses**. This directory has a directory for fast qc results, which describe the quality of the sequence data. As I make progress working my data through the pipeline, I will make directories here for different types of analyses.
+Within the project directory, I also made a directory for **Analyses**. This directory has a directory for fast qc results, which describe the quality of the sequence data. My lab uses R packages to calculate statistics instead of the Stacks pipeline. This is where I will store those results.
 
-Within the project directory, I also made a **Notebooks** directory that contains all of my Jupyter notebooks for the project, and their checkpoints.
+Within the project directory, I also made a **Notebooks** directory that contains all of my Jupyter notebooks for the project, and their checkpoints. However, I find that Jupyter causes more problems for me than I'd like. I'm hoping to annotate my work in python script comments and afterwards interpret it more clearly in a Jupyter notebook.
 
 Within the project directory, I also made a **Scripts** directory that will eventually contain any scripts associated with the project. I expect to have a custom script for each stage of the Stacks pipeline by the end of the quarter. 
 
