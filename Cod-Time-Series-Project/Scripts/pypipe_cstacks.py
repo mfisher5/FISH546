@@ -22,16 +22,22 @@ import sys
 myfile = open(sys.argv[1], "r")	#open the file with your list of barcodes and sample IDs
 newfile = open("cstacks_linecount_shell.txt", "w")	#create a new file where the ustacks code will go
 line_cd = sys.argv[2]
-filestring = line_cd + "\n"
+filestring = "cd " + line_cd + "\n"
 for line in myfile: 					#for each line in the barcode file
 	linelist = line.strip().split()		#make a list of character strings broken by tabs
 	sampID = linelist[2]				#pick out file name
-	newstring = "zcat " + sampID + " | wc -l >> cstacks_linecount.txt\n" # make line of code to run at command line
+	newstring = "gunzip -c " + sampID + " | wc -l >> cstacks_linecount.txt\n" # make line of code to run at command line
 	filestring += newstring # add to a list of strings we'll write to a file
 myfile.close()
 print filestring
 newfile.write(filestring) # write to file
 newfile.close()
+
+
+# ---B) Create a tuple that has the filename and the number of lines, and then sort in  
+#		descending order to pick the most prolific ten individuals. 
+
+for line in 
 
 # run shell script that will calculate line counts
 subprocess.call(['sh cstacks_linecount_shell.txt'], shell=True)
