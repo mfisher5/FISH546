@@ -8,6 +8,8 @@
 
 import subprocess # call module that will run shell scripts from this python script
 import sys 
+import os
+from os.path import basename
 
 ### ``cstacks``
 # **PURPOSE*** ustacks creates a catalog from a subset of individuals to call SNPs
@@ -79,13 +81,17 @@ with open('all_sorted_name_counts.txt', 'w') as file:
     file.writelines('\t'.join(i) + '\n' for i in sortedlist)
     
     
-cstacks_shell = open("cstacks_shell.txt", "w")
-firstline = "cstacks -b " + sys.argv[4]
+# cstacks_shell = open("cstacks_shell.txt", "w")
+# firstline = "cstacks -b " + sys.argv[4] + "\n"
+# 
+# 
+# endrange = sys.argv[3]+1 # set end of range for loop
+# 
+# for i in range(0, endrange):
+# 	filenames = 
 
-endrange = sys.argv[3]+1
+# cstacks_shell.write(firstline)
 
-for i in range(0, endrange):
-	
+print(basename("/a/b/c.txt"))
 
-cstacks_shell.write(firstline)
  
