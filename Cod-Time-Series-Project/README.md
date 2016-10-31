@@ -69,4 +69,4 @@ In **Week 4** I have made a custom python script for ustacks that can be run at 
 
 **Week 5 Goal** is to have a script for running cstacks.
 
-In **Week 5** I updated this README.md according to Steven's feedback.
+In **Week 5** I updated this README.md according to Steven's feedback as best as possible. I also wrote a script for using ``ustacks``.
