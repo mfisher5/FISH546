@@ -44,11 +44,15 @@ Much of the data analysis work will be done using the [Stacks pipeline](http://c
 
 In our lab, we run RAD data through this pipeline and then return to ``cstacks`` and change the way the program calls heterozygotes. Then, we rerun ``sstacks`` and ``populations``. We also have several in-house scripts we use to add additional quality filtering to the final genotype calls.
 
-Because this is my first time working with Stacks, I I hope to make it through at least **objectives 1-3** by the end of the quarter, and in doing so to create scripts that are clearly annotated and that I can use easily in the future with other RADseq projects. 
+##### Statistics #####
+
+Our lab uses a collection of R packages to calculate statistics of population differentiation, instead of using the statistics produced by the Stacks pipeline.
+
+Our lab collected environmental data on temperature regimes for the years these samples were collected. I will use this data to see whether any outlier loci sort with temperature regime, and whether those loci match to temperature regulation related genes in the Atlantic cod genome.
 
 ##### Directory Structure #####
 
-Within my class repo, I have a directory for this project. Within this directory, I made a directory for **Data** that has directories for raw data, processed data, and  metadata. Raw data is never altered and stored in its own directory to protect it. Metadata includes information on the individual fish, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. However, my data files are too large so I stored 3 (of ~100) on the Owl server to use in class as an example.
+Within my class repo FISH546, I have a directory for this project. Within this directory, I made a directory for **Data** that has directories for raw data, processed data, and  metadata. Raw data is never altered and stored in its own directory to protect it. Metadata includes information on the individual fish, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. However, my data files are too large so I stored 3 (of ~100) on the Owl server to use in class as an example.
 
 Within the project directory, I also made a directory for **Analyses**. This directory has a directory for fast qc results, which describe the quality of the sequence data. My lab uses R packages to calculate statistics instead of the Stacks pipeline. This is where I will store those results.
 
@@ -61,6 +65,8 @@ Within the project directory, I also made a **Scripts** directory that will even
 
 **Week 4 Goal** is it to have a script for running ustacks.
 
-In Week **4** I have made a custom python script for ustacks that can be run at the command line with a few arguments. The script renames files from barcode names to sample names, then creates a shell script to run each sample through the command line, then runs the shell script creating 4 output files per input file. I've also started on making the custom python script for cstacks. These scripts are located in my Scripts directory. It's a lot easier for me to work in a python script than in Jupyter Notebook, so I'm trying to keep those annotated and clean because I know they're not as pretty as the notebook! I'm hoping to put everything in a notebook toward the end so it's more readable to others. I just moved a few sample files of data to the Owl server so that Steven can run the scripts to see how they work, but I haven't yet changed the file path names so that they can work from Owl.
+In **Week 4** I have made a custom python script for ustacks that can be run at the command line with a few arguments. The script renames files from barcode names to sample names, then creates a shell script to run each sample through the command line, then runs the shell script creating 4 output files per input file. I've also started on making the custom python script for cstacks. These scripts are located in my Scripts directory. It's a lot easier for me to work in a python script than in Jupyter Notebook, so I'm trying to keep those annotated and clean because I know they're not as pretty as the notebook! I'm hoping to put everything in a notebook toward the end so it's more readable to others. I just moved a few sample files of data to the Owl server so that Steven can run the scripts to see how they work, but I haven't yet changed the file path names so that they can work from Owl.
 
 **Week 5 Goal** is to have a script for running cstacks.
+
+In **Week 5** I updated this README.md according to Steven's feedback.
