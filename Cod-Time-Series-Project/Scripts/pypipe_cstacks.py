@@ -2,7 +2,7 @@
 # Pacific Cod Time Series Project #
 
 #### WHEN RUNNING THIS SCRIPT
-## INPUTS: python [pypipe_cstacks.py] [txt file with sample names] [wd for data files]
+## INPUTS: python [pypipe_cstacks.py] [txt file with sample names] [wd for data files] [# individuals for cstacks] [batch number]
 
 # call necessary modules
 
@@ -77,3 +77,15 @@ print sortedlist
 
 with open('all_sorted_name_counts.txt', 'w') as file:
     file.writelines('\t'.join(i) + '\n' for i in sortedlist)
+    
+    
+cstacks_shell = open("cstacks_shell.txt", "w")
+firstline = "cstacks -b " + sys.argv[4]
+
+endrange = sys.argv[3]+1
+
+for i in range(0, endrange):
+	
+
+cstacks_shell.write(firstline)
+ 
