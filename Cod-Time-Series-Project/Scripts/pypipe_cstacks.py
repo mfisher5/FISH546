@@ -2,7 +2,7 @@
 # Pacific Cod Time Series Project #
 
 #### WHEN RUNNING THIS SCRIPT
-## INPUTS: python [txt file with sample names] []
+## INPUTS: python [pypipe_cstacks.py] [txt file with sample names] [wd for data files]
 
 # call necessary modules
 
@@ -20,16 +20,18 @@ import sys
 #		count for each file.
 
 myfile = open(sys.argv[1], "r")	#open the file with your list of barcodes and sample IDs
-newfile = open("cstacks_linecount", "w")	#create a new file where the ustacks code will go
-filestring = ""
+newfile = open("cstacks_linecount_shell.txt", "w")	#create a new file where the ustacks code will go
+line_cd = sys.argv[2]
+filestring = line_cd + "\n"
 for line in myfile: 					#for each line in the barcode file
 	linelist = line.strip().split()		#make a list of character strings broken by tabs
 	sampID = linelist[2]				#pick out file name
-	newstring = "zcat " + sampID + " | wc -l >> LineCounts.shell.txt\n" # make line of code to run at command line
+	newstring = "zcat " + sampID + " | wc -l >> cstacks_linecount.txt\n" # make line of code to run at command line
 	filestring += newstring # add to a list of strings we'll write to a file
 myfile.close()
+print filestring
 newfile.write(filestring) # write to file
 newfile.close()
 
 # run shell script that will calculate line counts
-subprocess.call(['LineCounts.shell.txt'], shell=True)
+subprocess.call(['sh cstacks_linecount_shell.txt'], shell=True)

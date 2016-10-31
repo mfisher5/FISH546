@@ -1,4 +1,4 @@
-fmv	AAACGG_L1_1.fq.gz	2005_387_1.fq.gz
+mv	AAACGG_L1_1.fq.gz	2005_387_1.fq.gz
 mv	GCCGTA_L1_1.fq.gz	2005_388_1.fq.gz
 mv	ACTCTT_L1_1.fq.gz	2005_389_1.fq.gz
 mv	TTCTAG_L1_1.fq.gz	2005_457_1.fq.gz
