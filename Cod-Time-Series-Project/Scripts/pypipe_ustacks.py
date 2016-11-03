@@ -4,10 +4,14 @@
 
 ### WHEN RUNNING THIS SCRIPT, YOUR INPUTS AT THE COMMAND LINE ARE:
 # python  
-# {1}[pipeline filename] 
-# {2}[barcodes & samples textfile] 
-# {3}[start directory] 
-# {4}[end directory]
+# {0}[pipeline filename] 
+# {1}[barcodes & samples textfile] 
+# {2}[start directory] 
+# {3}[end directory]
+
+### DEPENDENCIES
+
+# [1] You need a file where first column is barcode and second is unique sample name
 
 # Example: python pypipe_ustacks.py barcodes_samplenames.txt raw_data processed_data
 
@@ -29,8 +33,14 @@ import sys
 
 # you must first make a tab delimited text file where first col = barcode & second col = unique sample name
 
-myfile = open(sys.argv[1], "r")				# myfile =  CSV mentioned, called after your script
-new_file = open("new_filenames1.txt", "w") # new txt file
+
+new_file = open("new_filenames_shell.txt", "w") # new txt file
+dir = sys.argv[2] # directory files that need names changed
+firststr = "cd " + dir + "\n"
+new_file.write(firststr)
+
+myfile = open(sys.argv[1], "r")				# myfile =  tab delimited file mentioned, called after your script
+
 for line in myfile:						   # loop through each line
 	linelist=line.strip().split()		   # splits into list by white space
 	barcodefile = linelist[0] + "_1.fq.gz"
@@ -44,11 +54,8 @@ for line in myfile:						   # loop through each line
 myfile.close()
 new_file.close()
 
-# change your working directory to the folder that includes with absolute path
-subprocess.call(['cd /users/natalielowell/Git-repos/FISH546/Cod-Time-Series-Project/Data/raw_data'], shell=True)
-
 # run the script you just made as a shell script to rename your files
-subprocess.call(['sh new_filenames1.txt'], shell=True)
+subprocess.call(['sh new_filenames_shell.txt'], shell=True)
 
 
 
@@ -57,17 +64,25 @@ subprocess.call(['sh new_filenames1.txt'], shell=True)
 # ``ustacks`` requires an arbitrary integer for every sample, although unclear how it gets used as it does not become the name of the file
 
 # cd to one folder above where you are calling the fq files and one folder above where you are storing your results
-subprocess.call(['cd /users/natalielowell/Git-repos/FISH546/Cod-Time-Series-Project/Data/'], shell=True)
+
 
 # name your 'from' and 'to' directories that will go in each line of your ustacks shell script
 dirfrom = sys.argv[2]
 dirto = sys.argv[3]
 
 
-newfile = open("ustacks_shell.txt", "w")	 # make ustacks shell script to run through terminal
-myfile = open("new_filenames1.txt", "r")	#open the file with a list of barcodes + sample IDs
+newfile2 = open("ustacks_shell.txt", "w")	 # make ustacks shell script to run through terminal
+myfile = open("new_filenames_shell.txt", "r")	#open the file with a list of barcodes + sample IDs
 
-newfile.write('cd /users/natalielowell/Git-repos/FISH546/Cod-Time-Series-Project/Data/' + '\n')
+
+# dir = sys.argv[2] # directory files that need names changed
+# firststr = "cd " + dir + "\n"
+# new_file.write(firststr)
+
+dir2 = sys.argv[2] # directory with files that we want to run ustacks on
+firststr_2 = "cd " + dir2 + "\n"
+newfile2.write(firststr_2)
+
 ID_int = 001								# start integer counter
 for line in myfile: 			#for each line in the barcode file	
 	linelist=line.strip().split()	
@@ -81,11 +96,11 @@ for line in myfile: 			#for each line in the barcode file
 	else: 
 		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i " + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
 								#create a line of code for ustacks that includes the new sample ID (with no leading 0s)
-	newfile.write(ustacks_code)	#append this new line of code to the output file
+	newfile2.write(ustacks_code)	#append this new line of code to the output file
 	ID_int += 1
 
 myfile.close()
-newfile.close()
+newfile2.close()
 
 # run this new script through the terminal
 subprocess.call(['sh ustacks_shell.txt'], shell=True)
@@ -126,14 +141,3 @@ subprocess.call(['sh ustacks_shell.txt'], shell=True)
 # --bound_high [num] — upper bound for epsilon, the error rate, between 0 and 1.0 (default 1).
 # For the Fixed model:
 # --bc_err_freq [num] — specify the barcode error frequency, between 0 and 1.0.
-
-
-
-
-
-
-
-
-
-
-
