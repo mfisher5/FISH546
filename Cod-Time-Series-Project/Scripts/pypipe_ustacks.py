@@ -92,6 +92,43 @@ subprocess.call(['sh ustacks_shell.txt'], shell=True)
 
 
 
+### --- DOCUMENTATION FOR USTACKS
+# ustacks -t file_type -f file_path [-d] [-r] [-o path] [-i id] [-m min_cov] [-M max_dist] [-p num_threads] [-R] [-H] [-h]
+# t — input file Type. Supported types: fasta, fastq, gzfasta, or gzfastq.
+# f — input file path.
+# o — output path to write results.
+# i — SQL ID to insert into the output to identify this sample.
+# m — Minimum depth of coverage required to create a stack (default 2).
+# M — Maximum distance (in nucleotides) allowed between stacks (default 2).
+# N — Maximum distance allowed to align secondary reads to primary stacks (default: M + 2).
+# R — retain unused reads.
+# H — disable calling haplotypes from secondary reads.
+# p — enable parallel execution with num_threads threads.
+# h — display this help messsage.
+# Stack assembly options:
+# 
+# r — enable the Removal algorithm, to drop highly-repetitive stacks (and nearby errors) from the algorithm.
+# d — enable the Deleveraging algorithm, used for resolving over merged tags.
+# --max_locus_stacks [num] — maximum number of stacks at a single de novo locus (default 3).
+# --k_len [len] — specify k-mer size for matching between alleles and loci (automatically calculated by default).
+# Gapped assembly options:
+# 
+# --gapped — preform gapped alignments between stacks.
+# --max_gaps — number of gaps allowed between stacks before merging (default: 2).
+# --min_aln_len — minimum length of aligned sequence in a gapped alignment (default: 0.80).
+# Model options:
+# 
+# --model_type [type] — either 'snp' (default), 'bounded', or 'fixed'
+# For the SNP or Bounded SNP model:
+# --alpha [num] — chi square significance level required to call a heterozygote or homozygote, either 0.1, 0.05 (default), 0.01, or 0.001.
+# For the Bounded SNP model:
+# --bound_low [num] — lower bound for epsilon, the error rate, between 0 and 1.0 (default 0).
+# --bound_high [num] — upper bound for epsilon, the error rate, between 0 and 1.0 (default 1).
+# For the Fixed model:
+# --bc_err_freq [num] — specify the barcode error frequency, between 0 and 1.0.
+
+
+
 
 
 
