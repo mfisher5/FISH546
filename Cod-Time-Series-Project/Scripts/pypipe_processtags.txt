@@ -10,10 +10,9 @@
 # [ make code to run process_radtags ]
 
 
-# make necessary directories for whole project
+# --- (A) make necessary directories for whole project, using a shell script
 
-# you'll want a directory for each of the following
-
+# name your directories
 dir1 = "post-fastqc"
 dir2 = "post-ustacks"
 dir3 = "post-cstacks"
@@ -21,28 +20,20 @@ dir4 = "post-stacks"
 dir5 = "post-re-cstacks"
 dir6 = "post-extra-filtering"
 dir7 = "final-files"
+dirlist = [dir1, dir2, dir3, dir4, dir5, dir6, dir7] # make into list
 
 # open text file for shell script, make string that will be written to the file
-newfile = open("makeprojectdirs.txt", "w")
+newfile = open("make_proj_dirs.txt", "w")
 str_for_file = ""
 
-for i in range(0,7):
+for i in range(0, len(dirlist)):
+	dirname = dirlist[i]
+	tempstr = "mkdir " + dirname + "\n"
+# 	print tempstr # CHECK^
+	str_for_file += tempstr
+# print str_for_file # CHECK^
+
+newfile.write(str_for_file) # write string to file
 	
-	
-	
-	
-	
-	myfile = open(sys.argv[1], "r")	#open the file with your list of barcodes and sample IDs
-newfile = open("cstacks_linecount_shell.txt", "w")
 
-
-
-
-
-
-mkdir
-
-# write a shell script
-
-# run the shell script
-subprocess.call(['sh .txt'], shell=True)
+# subprocess.call(['sh .txt'], shell=True)

@@ -1,0 +1,7 @@
+mkdir post-fastqc
+mkdir post-ustacks
+mkdir post-cstacks
+mkdir post-stacks
+mkdir post-re-cstacks
+mkdir post-extra-filtering
+mkdir final-files
