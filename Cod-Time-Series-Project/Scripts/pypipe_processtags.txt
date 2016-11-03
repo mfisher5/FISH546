@@ -1,5 +1,5 @@
-###--- Natalie's Python Pipeline for Processing RAD data ---###
-# Pacific Cod Time Series Project #
+### --- Natalie's Python Pipeline for Processing RAD data 
+# Pacific Cod Time Series Project
 
 ### WHEN RUNNING THIS SCRIPT, YOUR INPUTS AT THE COMMAND LINE ARE:
 # python  
@@ -9,17 +9,22 @@
 # {3}[input sequence file type]
 # {4}[output sequence file type]
 # {5}[directory for output files]
+# {6}[filepath to text file with barcodes]
+# {7}[length to trim sequences based on fastqc results]
 
-### DEPENDENCES
+### DEPENDENCIES
 # [1] You want the following # and names of directories
+# [2] You used restriction enzyme sbf1
+# [3] You have quality scores encoded with Phred33
+# [4] You want to rescue barcodes and RAD-Tags (-r)
+# [5] You want to clean data, remove any read with an uncalled base (-c)
+# [6] You want to discard reads with low quality scores (-q)
 
-
-
-# call necessary modules
+# --- (A) call necessary modules
 import sys
 import subprocess
 
-# --- (A) make necessary directories for whole project, using a shell script
+# --- (B) make necessary directories for whole project
 
 # name your directories
 dir1 = "post-fastqc"
@@ -46,52 +51,14 @@ newfile.close() # close file
 # run shell script to make directories	
 subprocess.call(['sh make_proj_dirs.txt'], shell=True)
 
-# --- (B) process_radtags
+# --- (C) process_radtags
+
+str_for_prt_file = "process_radtags -p " + sys.argv[2] + " -P  -i " + sys.argv[3] + " -y " + sys.argv[4] + " -o " + sys.argv[5] + " -b " + sys.argv[6] + " -e sbfI -E phred33 -r -c -q -t " + sys.argv[7]
 
 prt_file = open("process_radtags.txt", "w")
-str_for_prt_file = ""
-
-for i in range(0, len(sys,argv[1]):
-	tempstr2 = "process_radtags -p " + sys.argv[2] + " -P  -i " + sys.argv[3] + " -y " + sys.argv[4] + " -o "
-	
-	str_for_prt_file +=
+prt_file.write(str_for_prt_file)
 
 
-
-
-
-# newfile = open("ustacks_shell.txt", "w")	 # make ustacks shell script to run through terminal
-# myfile = open("new_filenames1.txt", "r")	#open the file with a list of barcodes + sample IDs
-# 
-# newfile.write('cd /users/natalielowell/Git-repos/FISH546/Cod-Time-Series-Project/Data/' + '\n')
-# ID_int = 001								# start integer counter
-# for line in myfile: 			#for each line in the barcode file	
-# 	linelist=line.strip().split()	
-# 	sampID = linelist[2] 					#save the second object as "sampID"
-# 	if ID_int < 10: 
-# 		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i 00" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
-# 								#create a line of code for ustacks that includes the new sample ID (with 2 leading 0s)
-# 	elif ID_int >= 10 & ID_int < 100: 
-# 		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i 0" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
-# 								#create a line of code for ustacks that includes the new sample ID (with 1 leading 0)
-# 	else: 
-# 		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i " + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
-# 								#create a line of code for ustacks that includes the new sample ID (with no leading 0s)
-# 	newfile.write(ustacks_code)	#append this new line of code to the output file
-# 	ID_int += 1
-
-
--o /mnt/hgfs/Shared Drive D/Pacific cod/DataAnalysis/samplesT142 -b /mnt/hgfs/Shared Drive D/Pacific cod/DataAnalysis/barcodesL1.txt -e sbfI -E phred33 -r -c -q -t 146
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
 # --- DOCUMENTATION FOR PROCESS_RADTAGS
 # 
 #  process_radtags [-f in_file | -p in_dir [-P] [-I] | -1 pair_1 -2 pair_2] -b barcode_file -o out_dir -e enz 
@@ -116,33 +83,3 @@ for i in range(0, len(sys,argv[1]):
 # w — set the size of the sliding window as a fraction of the read length, between 0 and 1 (default 0.15).
 # s — set the score limit. If the average score within the sliding window drops below this value, the read is discarded (default 10).
 # h — display this help messsage.
-# Barcode options:
-# 
-# --inline_null: barcode is inline with sequence, occurs only on single-end read (default).
-# --index_null: barcode is provded in FASTQ header, occurs only on single-end read.
-# --inline_inline: barcode is inline with sequence, occurs on single and paired-end read.
-# --index_index: barcode is provded in FASTQ header, occurs on single and paired-end read.
-# --inline_index: barcode is inline with sequence on single-end read, occurs in FASTQ header for paired-end read.
-# --index_inline: barcode occurs in FASTQ header for single-end read, is inline with sequence on paired-end read.
-# Restriction enzyme options:
-# 
-# -e [enz], --renz_1 [enz]: provide the restriction enzyme used (cut site occurs on single-end read)
-# --renz_2 [enz]: if a double digest was used, provide the second restriction enzyme used (cut site occurs on the paired-end read).
-# 
-# Currently supported enzymes include:
-# 
-# 'aciI', 'ageI', 'aluI', 'apeKI', 'apoI', 'aseI', 'bamHI', 'bfaI', 'bgIII', 'bspDI', 'bstYI', 'claI', 'ddeI', 'dpnII', 'eaeI', 'ecoRI', 'ecoRV', 'ecoT22I', 'hindIII', 'kpnI', 'mluCI', 'mseI', 'mspI', 'ndeI', 'nheI', 'nlaIII', 'notI', 'nsiI', 'pstI', 'rsaI', 'sacI', 'sau3AI', 'sbfI', 'sexAI', 'sgrAI', 'speI', 'sphI', 'taqI', 'xbaI', or 'xhoI'.
-# Adapter options:
-# 
-# --adapter_1 [sequence]: provide adaptor sequence that may occur on the single-end read for filtering.
-# --adapter_2 [sequence]: provide adaptor sequence that may occur on the paired-read for filtering.
-# --adapter_mm [mismatches]: number of mismatches allowed in the adapter sequence.
-# Output options:
-# 
-# --retain_header: retain unmodified FASTQ headers in the output.
-# --merge: if no barcodes are specified, merge all input files into a single output file.
-# Advanced options:
-# 
-# --filter_illumina: discard reads that have been marked by Illumina’s chastity/purity filter as failing.
-# --disable_rad_check: disable checking if the RAD site is intact.
-# --barcode_dist: provide the distace between barcodes to allow for barcode rescue (default 2).
