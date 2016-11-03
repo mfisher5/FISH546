@@ -2,9 +2,17 @@
 # Pacific Cod Time Series Project #
 
 #### WHEN RUNNING THIS SCRIPT
-## --- INPUTS at command line: python {0}[pypipe_cstacks.py] {1}[txt file with sample names] 
-##		{2}[wd for data files] {3}[# individuals for cstacks] {4}[batch number] {5}[output directory] 
-##		{6}[num mismatches allowed] {7}[num threads]
+## INPUTS at command line: 
+# python 
+# {0}[pypipe_cstacks.py] 
+# {1}[txt file with sample names] 	
+# {2}[wd for data files] 
+# {3}[# individuals for cstacks] 
+# {4}[batch number] 
+# {5}[output directory] 
+# {6}[num mismatches allowed] 
+# {7}[num threads]
+
 ## --- DEPENDENCIES: your file names coming out of ustacks cannot have a period other than before file extension
 # 		call necessary modules
 
