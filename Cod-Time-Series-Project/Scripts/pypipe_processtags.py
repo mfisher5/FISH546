@@ -1,11 +1,12 @@
-### --- Natalie's Python Pipeline for Processing RAD data 
-# Pacific Cod Time Series Project
+##########################################################################################
 
+#``process_radtags``
+#
 ### PURPOSE
 # This script is for making directories you will need to store files after each milestone in
 # the Stacks pipeline. In addition, it will run process_radtags on a given raw file from
 # the sequencing center.
-
+#
 ### WHEN RUNNING THIS SCRIPT, YOUR INPUTS AT THE COMMAND LINE ARE:
 # python  
 # {0}[name of script file]
@@ -16,11 +17,11 @@
 # {5}[directory for output files]
 # {6}[filepath to text file with barcodes]
 # {7}[length to trim sequences based on fastqc results]
-
+#
 ### YOUR OUTPUTS WILL BE:
 # Named directories and a group of sequence files (you determine file type) that is demultiplexed,
 # trimmed, and cleaned
-
+#
 ### DEPENDENCIES
 # [1] You want the following # and names of directories
 # [2] You used restriction enzyme sbf1
@@ -29,12 +30,18 @@
 # [5] You want to clean data, remove any read with an uncalled base (-c)
 # [6] You want to discard reads with low quality scores (-q)
 
-# --- (A) call necessary modules
+##########################################################################################
+
+# --- [A] call necessary modules
 
 import sys
 import subprocess
 
-# --- (B) make necessary directories for whole project
+
+
+
+
+# --- [B] make necessary directories for whole project
 
 # name your directories
 dir1 = "post-fastqc"
@@ -61,7 +68,11 @@ newfile.close() # close file
 # run shell script to make directories	
 subprocess.call(['sh make_proj_dirs.txt'], shell=True)
 
-# --- (C) process_radtags
+
+
+
+
+# --- [C] process_radtags
 
 str_for_prt_file = "process_radtags -p " + sys.argv[2] + " -P  -i " + sys.argv[3] + " -y " + sys.argv[4] + " -o " + sys.argv[5] + " -b " + sys.argv[6] + " -e sbfI -E phred33 -r -c -q -t " + sys.argv[7]
 

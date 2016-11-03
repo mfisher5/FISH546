@@ -15,7 +15,7 @@ The goal of this project is to measure adaptive difference within and between co
 ##### The Stacks pipeline #####
 Much of the data analysis work will be done using the [Stacks pipeline](http://catchenlab.life.illinois.edu/stacks/). The major programs that make up the milestones of the Stacks pipeline are (1) ``process_radtags``, (2) ``ustacks``, (3) ``cstacks``, (4) ``sstacks``, and (5) ``populations``.
 
-``process_radtags`` is a program that renames each file by the barcode of the sample and allows you to filter the data by quality thresholds. The input is a fasta file, and the output is a fastq file. The previous user of my data already ran it through ``process_radtags``.
+``process_radtags`` is a program that renames each file by the barcode of the sample and allows you to filter the data by quality thresholds. The input is a fasta file, and the output is a fastq file. The previous user of my data already ran it through ``process_radtags``. My notebook for running ``process_radtags`` on my data is [here]()
 
 <br>
 ![image](http://catchenlab.life.illinois.edu/stacks/manual/process_radtags.png)
