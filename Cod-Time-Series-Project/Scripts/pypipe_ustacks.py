@@ -1,38 +1,40 @@
-###--- Natalie's Python Pipeline for Processing RAD data ---###
-# Pacific Cod Time Series Project #
-
-
+##########################################################################################
+# 
+### ``ustacks``
+#
+# PURPOSE: This step aligns identical RAD tags within an individual into stacks & provides data for calling SNPs
+# INPUT: fastq or gzfastq files
+# OUTPUT: 4 files - alleles, modules, snps, tags
+# 
+# 
 ### WHEN RUNNING THIS SCRIPT, YOUR INPUTS AT THE COMMAND LINE ARE:
 # python  
 # {0}[pipeline filename] 
 # {1}[barcodes & samples textfile] 
 # {2}[start directory] 
 # {3}[end directory]
-
+# 
 ### DEPENDENCIES
-
+# 
 # [1] You need a file where first column is barcode and second is unique sample name
+# 
+### WARNINGS
+# 
+# [1] ustacks only works when your working directory is one direcotry above the folders you are
+#		calling and storing data in 
+# 
+##########################################################################################
 
-# Example: python pypipe_ustacks.py barcodes_samplenames.txt raw_data processed_data
-
-# --- call necessary modules
+# --- [A] call necessary modules
 
 import subprocess
 import sys 
 
 
-### ``ustacks``
-
-# **PURPOSE*** This step aligns identical RAD tags within an individual
-# **Input** fastq or gzfastq files
-# **Output** 4 files - alleles, modules, snps, tags
 
 
 
-# ---A) Rename your files by the sample name
-
-# you must first make a tab delimited text file where first col = barcode & second col = unique sample name
-
+# --- [B] Rename your files by the sample name
 
 new_file = open("new_filenames_shell.txt", "w") # new txt file
 dir = sys.argv[2] # directory files that need names changed
@@ -59,21 +61,19 @@ subprocess.call(['sh new_filenames_shell.txt'], shell=True)
 
 
 
-# ---B) Make shell script to run all samples through command line through ``ustacks``
+
+
+### --- [C] Make shell script to run all samples through command line through ``ustacks``
 
 # ``ustacks`` requires an arbitrary integer for every sample, although unclear how it gets used as it does not become the name of the file
-
-# cd to one folder above where you are calling the fq files and one folder above where you are storing your results
 
 
 # name your 'from' and 'to' directories that will go in each line of your ustacks shell script
 dirfrom = sys.argv[2]
 dirto = sys.argv[3]
 
-
 newfile2 = open("ustacks_shell.txt", "w")	 # make ustacks shell script to run through terminal
 myfile = open("new_filenames_shell.txt", "r")	#open the file with a list of barcodes + sample IDs
-
 
 # dir = sys.argv[2] # directory files that need names changed
 # firststr = "cd " + dir + "\n"
@@ -105,7 +105,7 @@ newfile2.close()
 # run this new script through the terminal
 subprocess.call(['sh ustacks_shell.txt'], shell=True)
 
-
+##########################################################################################
 
 ### --- DOCUMENTATION FOR USTACKS
 # ustacks -t file_type -f file_path [-d] [-r] [-o path] [-i id] [-m min_cov] [-M max_dist] [-p num_threads] [-R] [-H] [-h]

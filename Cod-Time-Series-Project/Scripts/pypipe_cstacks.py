@@ -1,11 +1,11 @@
 ##########################################################################################
-
+# 
 ###--- ``cstacks`` script
 #
 # PURPOSE: ustacks creates a catalog from a subset of individuals to call SNPs
 # INPUT: ustacks out put files for specified number of individuals with most sequence reads
 # OUTPUT: catalog file + associated files
-
+# 
 #### WHEN RUNNING THIS SCRIPT, INPUTS AT THE COMMAND LINE ARE:
 # python 
 # {0}[pypipe_cstacks.py] 
@@ -16,13 +16,13 @@
 # {5}[output directory] 
 # {6}[num mismatches allowed] 
 # {7}[num threads]
-
+# 
 ### DEPENDENCIES: 
 # [1] Your file names coming out of ustacks cannot have a period other than before file extension (not sure if true! check?)
-
+# 
 ### WARNINGS:
 # [1] If you have to rerun this script, it will append onto it! make sure no file w name or else won't even run!
-
+# 
 ##########################################################################################
 
 ### --- [A] Call necessary modules
