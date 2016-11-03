@@ -1,0 +1,48 @@
+###--- Natalie's Python Pipeline for Processing RAD data ---###
+# Pacific Cod Time Series Project #
+
+### WHEN RUNNING THIS SCRIPT, YOUR INPUTS AT THE COMMAND LINE ARE:
+# python  
+# {}[]
+# {}[]
+# {}[]
+
+# [ make code to run process_radtags ]
+
+
+# make necessary directories for whole project
+
+# you'll want a directory for each of the following
+
+dir1 = "post-fastqc"
+dir2 = "post-ustacks"
+dir3 = "post-cstacks"
+dir4 = "post-stacks"
+dir5 = "post-re-cstacks"
+dir6 = "post-extra-filtering"
+dir7 = "final-files"
+
+# open text file for shell script, make string that will be written to the file
+newfile = open("makeprojectdirs.txt", "w")
+str_for_file = ""
+
+for i in range(0,7):
+	
+	
+	
+	
+	
+	myfile = open(sys.argv[1], "r")	#open the file with your list of barcodes and sample IDs
+newfile = open("cstacks_linecount_shell.txt", "w")
+
+
+
+
+
+
+mkdir
+
+# write a shell script
+
+# run the shell script
+subprocess.call(['sh .txt'], shell=True)

@@ -14,7 +14,8 @@
 # {7}[num threads]
 
 ## --- DEPENDENCIES: your file names coming out of ustacks cannot have a period other than before file extension
-# 		call necessary modules
+
+### ---  Call necessary modules
 
 import sys 
 import subprocess # call module that will run shell scripts from this python script

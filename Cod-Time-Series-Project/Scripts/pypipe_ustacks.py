@@ -2,13 +2,18 @@
 # Pacific Cod Time Series Project #
 
 
-### WHEN RUNNING THIS SCRIPT, YOUR INPUTS ARE
-### python  [pipeline filename] [barcodes & samples textfile] [start directory] [end directory]
-### python pypipe_ustacks.py barcodes_samplenames.txt raw_data processed_data
+### WHEN RUNNING THIS SCRIPT, YOUR INPUTS AT THE COMMAND LINE ARE:
+# python  
+# {1}[pipeline filename] 
+# {2}[barcodes & samples textfile] 
+# {3}[start directory] 
+# {4}[end directory]
 
-# call necessary modules
+# Example: python pypipe_ustacks.py barcodes_samplenames.txt raw_data processed_data
 
-import subprocess # call module that will run shell scripts from this python script
+# --- call necessary modules
+
+import subprocess
 import sys 
 
 
