@@ -3,9 +3,15 @@
 
 ### WHEN RUNNING THIS SCRIPT, YOUR INPUTS AT THE COMMAND LINE ARE:
 # python  
+# {0}[name of script file]
+# {1}[number of files you'll be running through process_radtags]
 # {}[]
 # {}[]
-# {}[]
+
+### DEPENDENCES
+# [1] You want the following # and names of directories
+
+
 
 # call necessary modules
 import sys
@@ -39,4 +45,36 @@ newfile.close() # close file
 subprocess.call(['sh make_proj_dirs.txt'], shell=True)
 
 # --- (B) process_radtags
-#[ make code to run process_radtags ]
+
+prt_file = open("process_radtags.txt", "w")
+str_for_prt_file = ""
+
+for i in 
+
+
+
+
+
+# newfile = open("ustacks_shell.txt", "w")	 # make ustacks shell script to run through terminal
+# myfile = open("new_filenames1.txt", "r")	#open the file with a list of barcodes + sample IDs
+# 
+# newfile.write('cd /users/natalielowell/Git-repos/FISH546/Cod-Time-Series-Project/Data/' + '\n')
+# ID_int = 001								# start integer counter
+# for line in myfile: 			#for each line in the barcode file	
+# 	linelist=line.strip().split()	
+# 	sampID = linelist[2] 					#save the second object as "sampID"
+# 	if ID_int < 10: 
+# 		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i 00" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+# 								#create a line of code for ustacks that includes the new sample ID (with 2 leading 0s)
+# 	elif ID_int >= 10 & ID_int < 100: 
+# 		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i 0" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+# 								#create a line of code for ustacks that includes the new sample ID (with 1 leading 0)
+# 	else: 
+# 		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i " + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+# 								#create a line of code for ustacks that includes the new sample ID (with no leading 0s)
+# 	newfile.write(ustacks_code)	#append this new line of code to the output file
+# 	ID_int += 1
+
+
+
+process_radtags -p /mnt/hgfs/Shared Drive D/Pacific cod/DataAnalysis/raw_data/L1_PE150/ -P -i gzfastq -y gzfasta -o /mnt/hgfs/Shared Drive D/Pacific cod/DataAnalysis/samplesT142 -b /mnt/hgfs/Shared Drive D/Pacific cod/DataAnalysis/barcodesL1.txt -e sbfI -E phred33 -r -c -q -t 146
