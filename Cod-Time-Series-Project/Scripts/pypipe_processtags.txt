@@ -7,8 +7,9 @@
 # {}[]
 # {}[]
 
-# [ make code to run process_radtags ]
-
+# call necessary modules
+import sys
+import subprocess
 
 # --- (A) make necessary directories for whole project, using a shell script
 
@@ -29,11 +30,13 @@ str_for_file = ""
 for i in range(0, len(dirlist)):
 	dirname = dirlist[i]
 	tempstr = "mkdir " + dirname + "\n"
-# 	print tempstr # CHECK^
 	str_for_file += tempstr
-# print str_for_file # CHECK^
 
 newfile.write(str_for_file) # write string to file
-	
+newfile.close() # close file
 
-# subprocess.call(['sh .txt'], shell=True)
+# run shell script to make directories	
+subprocess.call(['sh make_proj_dirs.txt'], shell=True)
+
+# --- (B) process_radtags
+#[ make code to run process_radtags ]
