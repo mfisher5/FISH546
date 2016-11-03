@@ -18,8 +18,8 @@
 # {7}[length to trim sequences based on fastqc results]
 
 ### YOUR OUTPUTS WILL BE:
-# Named directories and a sequence file (you determine file type) that is trimmed, 
-# cleaned, and renamed with the barcode
+# Named directories and a group of sequence files (you determine file type) that is demultiplexed,
+# trimmed, and cleaned
 
 ### DEPENDENCIES
 # [1] You want the following # and names of directories
