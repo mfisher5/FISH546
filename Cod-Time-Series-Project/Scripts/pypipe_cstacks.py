@@ -109,6 +109,24 @@ laststr = "-o " + sys.argv[5] + " -n " + sys.argv[6] + " -p " + sys.argv[7]
 cstacks_shell += laststr
 # print cstacks_shell # CHECK^
 
+### --- DOCUMENTATION FOR CSTACKS
+
+# cstacks -b batch_id -s sample_file [-s sample_file_2 ...] [-o path] [-n num] [-g] [-p num_threads] [--catalog path] [-h]
+# p — enable parallel execution with num_threads threads.
+# b — MySQL ID of this batch.
+# s — TSV file from which to load radtags.
+# o — output path to write results.
+# m — include tags in the catalog that match to more than one entry.
+# n — number of mismatches allowed between sample tags when generating the catalog.
+# g — base catalog matching on genomic location, not sequence identity.
+# h — display this help messsage.
+# Catalog editing:
+# 
+# --catalog [path] — provide the path to an existing catalog. cstacks will add data to this existing catalog.
+# Advanced options:
+# 
+# --report_mmatches — report query loci that match more than one catalog locus.
+
 
 
  
