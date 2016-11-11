@@ -12,7 +12,8 @@
 # {0}[pipeline filename] 
 # {1}[file with sample names]
 # {2}[batch ID number]
-# {3}
+# {3}[filepath to directory with catalog files and nothing else]
+# {4}[
 # 
 ### DEPENDENCIES
 # 
@@ -33,8 +34,12 @@ import sys
 
 samplenames = open(sys.argv[1], "r") # open file w sample names 
 newfile = open("sstacks_shell.txt", "w") # create new file for shell script
-filestring = "sstacks -b" + sys.argv[2]
+filestring = "sstacks -b " + sys.argv[2] + " -c " + sys.argv[3]
 
+
+
+
+filename.rsplit(".",2)[0]
 
 
 
