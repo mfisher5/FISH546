@@ -2,18 +2,19 @@
 # 
 ### ``sstacks``
 #
-# PURPOSE: 
-# INPUT: 
-# OUTPUT: 
+# PURPOSE: To match individual samples against your catalog for genotyping
+# INPUT: TSV output files from cstacks
+# OUTPUT: match files
 # 
 # 
 ### WHEN RUNNING THIS SCRIPT, YOUR INPUTS AT THE COMMAND LINE ARE:
 # python  
 # {0}[pipeline filename] 
-# {1}[file with sample names]
+# {1}[shell script w sample names]
 # {2}[batch ID number]
-# {3}[filepath to directory with catalog files and nothing else]
-# {4}[
+# {3}[filepath to directory with catalog filename without file extension]
+# {4}[filepath to directory w ustacks output files per sample]
+# {5}[number of threads to use]
 # 
 ### DEPENDENCIES
 # 
@@ -30,16 +31,45 @@
 import subprocess
 import sys 
 
+
+
+
+
 # --- [B] make shell script for sstacks
 
-samplenames = open(sys.argv[1], "r") # open file w sample names 
+trim_names = [] # initiate list
+
+rename_shell = open(sys.argv[1], "r") # open file w filenames 
+for line in rename_shell:
+	linelist = line.strip().split()
+	trim_name = linelist[2].rsplit(".",2)[0]
+	trim_names.append(trim_name)
+# print trim_names # CHECK^
+
+rename_shell.close()
+
+numsamples = len(trim_names)
+
 newfile = open("sstacks_shell.txt", "w") # create new file for shell script
 filestring = "sstacks -b " + sys.argv[2] + " -c " + sys.argv[3]
 
+for i in range(0,numsamples):
+	substr = " -s " + sys.argv[4] + "/" + trim_names[i]
+	filestring += substr
+	
+filestring += " -p " + sys.argv[5]
+# print filestring # ^CHECK
+
+newfile.write(filestring)
+newfile.close()
 
 
 
-filename.rsplit(".",2)[0]
+
+
+# --- [C] run shell script for sstacks
+
+subprocess.call(["sh sstacks_shell.txt"], shell=True)
 
 
 
@@ -47,14 +77,13 @@ filename.rsplit(".",2)[0]
 
 ##########################################################################################
 
-### --- DOCUMENTATION FOR SSTACKS
-# sstacks -b batch_id -c catalog_file -s sample_file [-s sample_file_2 ...] [-o path] [-p num_threads] [-g] [-x] [-v] [-h]
-# p — enable parallel execution with num_threads threads.
-# b — MySQL ID of this batch.
-# c — TSV file from which to load the catalog loci.
-# s — TSV file from which to load sample loci.
-# o — output path to write results.
-# g — base matching on genomic location, not sequence identity.
-# x — don’t verify haplotype of matching locus.
-# v — print program version.
-# h — display this help messsage.
+# SSTACKS DOCUMENTATION
+# p - enable parallel execution with num_threatds threads
+# b - MySQL ID of this batch
+# c - TSV file from which to load the catalog loci
+# s - TSV file from which to load sample loci
+# o - output path to write results
+# g - base matching on genomic location, not sequence identity
+# x - don't verify haplotype of matching locus
+# v - print program values
+# h - display this help message
