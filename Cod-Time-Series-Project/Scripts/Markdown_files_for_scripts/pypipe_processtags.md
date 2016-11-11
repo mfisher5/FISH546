@@ -28,7 +28,7 @@ Named directories and a group of sequence files (you determine file type) that i
 <br>[6] You want to discard reads with low quality scores (-q)
 
 ```
-#[A] call necessary modules
+# [A] call necessary modules
 
 import sys
 import subprocess
@@ -74,6 +74,9 @@ str_for_prt_file = "process_radtags -p " + sys.argv[2] + " -P  -i " + sys.argv[3
 
 prt_file = open("process_radtags.txt", "w")
 prt_file.write(str_for_prt_file)
+prt_file.close()
+
+
 
 
 # --- DOCUMENTATION FOR PROCESS_RADTAGS
