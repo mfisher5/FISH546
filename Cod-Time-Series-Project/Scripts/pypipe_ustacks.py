@@ -59,7 +59,7 @@ new_file.close()
 # run the script you just made as a shell script to rename your files
 subprocess.call(['sh new_filenames_shell.txt'], shell=True)
 
-
+ 
 
 
 
