@@ -1,0 +1,13 @@
+.
+..
+.DS_Store
+.ipynb_checkpoints
+Cod Time Series Project - cstacks.ipynb
+Cod Time Series Project - ustacks.ipynb
+Cod-Time-Series-Project - Full Pipeline.ipynb
+Cod-Time-Series-Project - process_radtags.ipynb
+dircontents.txt
+Downloading&Installing_Software.ipynb
+FirstLook_20161018.ipynb
+getcontents_shell.txt
+images_for_notebooks
