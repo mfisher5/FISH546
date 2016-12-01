@@ -37,24 +37,25 @@ import subprocess
 ### --- [B] Count lines in each sequence file
 
 myfile = open(sys.argv[1], "r")	#open the file with your list of barcodes and sample IDs
+lines = myfile.readlines()[2:]
+
 
 dirfrom = sys.argv[2] # get directory for input files
-firststr = "cd " + "sys.argv[2]" + "\n" # write first line of shell to cd to this directory
+firststr = "cd " + sys.argv[2] + "\n" # write first line of shell to cd to this directory
 
 filestring = ""
+filestring += firststr
+
 samplename_list = [] # to be used in loop later in this script
 
-for line in myfile: 					#for each line in the barcode file
+for line in lines: 					#for each line in the barcode file
 	linelist = line.strip().split()		#make a list of character strings broken by tabs
 	sampID = linelist[2]				#pick out file name
 	samplename_list.append(sampID)
-	newstring = "gunzip -c " + sampID + " | wc -l >> cstacks_linecount.txt\n" # make line of code to run at command line
+	newstring = "gunzip -c " + sampID + " | wc -l >> ../cstacks_linecount.txt\n" # make line of code to run at command line
 	filestring += newstring # add to a list of strings we'll write to a file
 myfile.close()
-# print filestring # CHECK^
 
-
-filestring = firststr + filestring # write cd line before rest of file string
 
 #create a new file where the ustacks code will go, write string to file, close
 newfile = open("cstacks_linecount_shell.txt", "w")
@@ -62,14 +63,14 @@ newfile.write(filestring)
 newfile.close()
 
 # run shell script that will calculate line counts
-subprocess.call(['sh cstacks_linecount_shell.txt'], shell=True)
+# subprocess.call(['sh cstacks_linecount_shell.txt'], shell=True)
+# 
 
-
-
-
-
-### --- [C] Get sample names for specified # of samples with most sequence reads 
-
+# 
+# 
+# 
+# ### --- [C] Get sample names for specified # of samples with most sequence reads 
+# 
 linecounts = open("cstacks_linecount.txt", "r") # read in line counts file
 linecounts_list = [] # initiate a list for the line counts so I can get.item later
 
@@ -105,44 +106,46 @@ with open('all_sorted_name_counts.txt', 'w') as file:
 
 ### --- [D] Write and run shell script for ``cstacks``
 
+
+# ---------
+# I had an automated way to pick the ten samples with most reads, but my ustacks run on 20161108 failed halfway throgh
+# and so I have less samples. So I manually picked ten with the most reads of the files that went through ustacks
+
+# so hash comment this out in the future!
+
+
+samples_for_use = []
+foruse = open("for_use_1130.txt", "r")
+for line in foruse:
+	linelist = line.strip().split()
+	samples_for_use.append(linelist[0])
+foruse.close()
+
+
+
+#----------
+
+
+
 cstacks_shell = ""
+dirstr = "cd " + sys.argv[2] + "\n"
 firststr = "cstacks -b " + sys.argv[4] + " "
 cstacks_shell += firststr
 
 endrange = int(sys.argv[3]) # set end of range for loop
 for i in range(0, endrange):
-	filename = samplename_list[i]
+	filename = samples_for_use[i]
 	trmd_filename = filename.rsplit(".",2)[0]
-	# print trmd_filename # CHECK^
-	string = "-s " + trmd_filename + " "
+	string = "-s " + sys.argv[2] + "/" + trmd_filename + " "
 	cstacks_shell += string
 laststr = "-o " + sys.argv[5] + " -n " + sys.argv[6] + " -p " + sys.argv[7]
 cstacks_shell += laststr
-# print cstacks_shell # CHECK^
 
-cstacks_shell_txt = write("cstacks_shell.txt", "w")
+cstacks_shell_txt = open("cstacks_shell.txt", "w")
 cstacks_shell_txt.write(cstacks_shell)
 cstacks_shell_txt.close()
 
 # run shell script
-subprocess.call(["cstacks_shell.txt"], shell = True)
+subprocess.call(["sh cstacks_shell.txt"], shell = True)
 
 ##########################################################################################
-
-### --- DOCUMENTATION FOR CSTACKS
-
-# cstacks -b batch_id -s sample_file [-s sample_file_2 ...] [-o path] [-n num] [-g] [-p num_threads] [--catalog path] [-h]
-# p — enable parallel execution with num_threads threads.
-# b — MySQL ID of this batch.
-# s — TSV file from which to load radtags.
-# o — output path to write results.
-# m — include tags in the catalog that match to more than one entry.
-# n — number of mismatches allowed between sample tags when generating the catalog.
-# g — base catalog matching on genomic location, not sequence identity.
-# h — display this help messsage.
-# Catalog editing:
-# 
-# --catalog [path] — provide the path to an existing catalog. cstacks will add data to this existing catalog.
-# Advanced options:
-# 
-# --report_mmatches — report query loci that match more than one catalog locus.
