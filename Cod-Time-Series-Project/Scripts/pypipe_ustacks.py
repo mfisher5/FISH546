@@ -38,18 +38,18 @@ import sys
 
 new_file = open("new_filenames_shell.txt", "w") # new txt file
 dir = sys.argv[2] # directory files that need names changed
-firststr = "cd " + dir + "\n"
+firststr = "cd " + dir + "\n" + "pwd\n"
 new_file.write(firststr)
 
 myfile = open(sys.argv[1], "r")				# myfile =  tab delimited file mentioned, called after your script
 
 for line in myfile:						   # loop through each line
 	linelist=line.strip().split()		   # splits into list by white space
-	barcodefile = linelist[0] + "_1.fq.gz"
-	# print barcodefile 				   # troubleshooting loop
-	samplefile = linelist[1] + "_1.fq.gz"
-	# print samplefile 					   # troubleshooting loop
-	newstring = "mv" + "\t" + barcodefile + "\t" + samplefile + "\n"
+	barcodefile1 = linelist[0] + "_1.fq.gz" # forward
+	barcodefile2 = linelist[0] + "_2.fq.gz" # reverse
+	samplefile1 = linelist[1] + "_1.fq.gz" # forward
+	samplefile2 = linelist[1] + "_2.fq.gz" # reverse
+	newstring = "mv" + "\t" + barcodefile1 + "\t" + samplefile1 + "\n" + "mv" + "\t" + barcodefile2 + "\t" + samplefile2 + "\n"
 	# print newstring  # troubleshooting loop
 	new_file.write(newstring)
 
@@ -80,11 +80,14 @@ myfile = open("new_filenames_shell.txt", "r")	#open the file with a list of barc
 # new_file.write(firststr)
 
 dir2 = sys.argv[2] # directory with files that we want to run ustacks on
-firststr_2 = "cd " + dir2 + "\n"
-newfile2.write(firststr_2)
 
 ID_int = 001								# start integer counter
-for line in myfile: 			#for each line in the barcode file	
+
+lines = myfile.readlines()[2:] # skip first two lines because just cd and pwd
+
+
+ID_int = 001								# start integer counter
+for line in lines: 			#for each line in the barcode file	
 	linelist=line.strip().split()	
 	sampID = linelist[2] 					#save the second object as "sampID"
 	if ID_int < 10: 
@@ -106,38 +109,3 @@ newfile2.close()
 subprocess.call(['sh ustacks_shell.txt'], shell=True)
 
 ##########################################################################################
-
-### --- DOCUMENTATION FOR USTACKS
-# ustacks -t file_type -f file_path [-d] [-r] [-o path] [-i id] [-m min_cov] [-M max_dist] [-p num_threads] [-R] [-H] [-h]
-# t — input file Type. Supported types: fasta, fastq, gzfasta, or gzfastq.
-# f — input file path.
-# o — output path to write results.
-# i — SQL ID to insert into the output to identify this sample.
-# m — Minimum depth of coverage required to create a stack (default 2).
-# M — Maximum distance (in nucleotides) allowed between stacks (default 2).
-# N — Maximum distance allowed to align secondary reads to primary stacks (default: M + 2).
-# R — retain unused reads.
-# H — disable calling haplotypes from secondary reads.
-# p — enable parallel execution with num_threads threads.
-# h — display this help messsage.
-# Stack assembly options:
-# 
-# r — enable the Removal algorithm, to drop highly-repetitive stacks (and nearby errors) from the algorithm.
-# d — enable the Deleveraging algorithm, used for resolving over merged tags.
-# --max_locus_stacks [num] — maximum number of stacks at a single de novo locus (default 3).
-# --k_len [len] — specify k-mer size for matching between alleles and loci (automatically calculated by default).
-# Gapped assembly options:
-# 
-# --gapped — preform gapped alignments between stacks.
-# --max_gaps — number of gaps allowed between stacks before merging (default: 2).
-# --min_aln_len — minimum length of aligned sequence in a gapped alignment (default: 0.80).
-# Model options:
-# 
-# --model_type [type] — either 'snp' (default), 'bounded', or 'fixed'
-# For the SNP or Bounded SNP model:
-# --alpha [num] — chi square significance level required to call a heterozygote or homozygote, either 0.1, 0.05 (default), 0.01, or 0.001.
-# For the Bounded SNP model:
-# --bound_low [num] — lower bound for epsilon, the error rate, between 0 and 1.0 (default 0).
-# --bound_high [num] — upper bound for epsilon, the error rate, between 0 and 1.0 (default 1).
-# For the Fixed model:
-# --bc_err_freq [num] — specify the barcode error frequency, between 0 and 1.0.
