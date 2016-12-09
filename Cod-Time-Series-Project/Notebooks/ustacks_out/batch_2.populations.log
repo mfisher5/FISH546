@@ -1,0 +1,3 @@
+populations -b 2 -P ustacks_out -M popmap1.txt -t 10 -r 0.50 -p 1 -m 5 --genepop
+populations version 1.44 executed 2016-12-08 14:15:06
+
