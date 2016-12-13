@@ -6,7 +6,7 @@
 
 ##### Documentation
 
-The most important command line arguments are [i] the -r
+The most important command line arguments are [i] the -t, the input filetype, [2] -f, the input filepath, [iii] -r to drop highly repetitive stacks, [iv] -d for resolving over merged tags, [v] -o for output path, [vi] -i for SQL ID for identifying the sample, [vii] -m, minimum stack depth, usually 10, [viii] -M, maximum distance in nucleotides, usually 3, and [ix] -p, number of threads to enable.
 
 Here is more information on most of the important arguments in ``ustacks`` here:
 
