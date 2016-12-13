@@ -1,6 +1,6 @@
 ## Adding library identifiers to filenames
 
-When analyzing data from multiple lanes that have redundant barcodes, it may be helpful to add a library identifier to the filename. I wrote a script to do this by adding "\_L1" or "_L2" to the end of the filename, before the file extensions.
+When analyzing data from multiple lanes that have redundant barcodes, it may be helpful to add a library identifier to the filename. I wrote a script to do this by adding "\_L1" or "_L2", etc., to the end of the filename, before the file extensions.
 
 ##### [1] Checking to see if you've added a library identifier
 
