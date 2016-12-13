@@ -143,7 +143,9 @@ $	./bowtie-build batch_3_BowtieBlastFiltered_GOOD.fa batch_3_final_index
 
 ##### [2] Aligning your fastq files
 
-Use ``bowtie-build`` to align your fastq files (from ``process_radtags`` output) to your final ``bowtie`` index. The command line arguments indlude [i] the mismatch paramter -v (here, 3), [ii] the --sam parameter signifying a SAM output file type, [iii] the --sam-nohead paramter that leaves off the header line, [iv] the name of your bowtie index files (here, batch_3), and [v] a list of the filenames for your fasta files separated by comma, and [vi] the output file name. *The --sam and --sam-nohead arguments may be redundant. The example code is from the first time I've tried this, so there may be a more efficient way to do this.
+NOTE: This step is time intensive!
+
+Use ``bowtie-build`` to align your fastq files (from ``process_radtags`` output) to your final ``bowtie`` index. The command line arguments indlude [i] the mismatch paramter -v (here, 3), [ii] the --sam parameter signifying a SAM output file type, [iii] the --sam-nohead paramter that leaves off the header line, [iv] the name of your bowtie index files (here, batch_3), and [v] a list of the filenames for your fasta files separated by comma, and [vi] the output file name. Make sure your fastq files are unzipped. *The --sam and --sam-nohead arguments may be redundant. The example code is from the first time I've tried this, so there may be a more efficient way to do this.
 
 Example code:
 <br>
@@ -152,11 +154,25 @@ Example code:
 $	./bowtie -v 3 --sam --sam-nohead batch_3_final_index ./fastq_files/2005_297_1.fq,./fastq_files/2005_298_1.fq,./fastq_files/2015_139_1.fq,./fastq_files/2015_140_1.fq batch_3_final.sam
 ```
 
-I wrote a python [script] to produce the shell script because it can be tedious to list all of the filenames. The command line arguments for this script are [i], [ii], [iii], [iv],
+I wrote a python [script](https://github.com/nclowell/FISH546/blob/master/Cod-Time-Series-Project/Scripts/final_bowtie_shell.py) to produce the shell script because it can be tedious to list all of the filenames. The command line arguments for this script are [i] text file with each fastq file name on its own line, [ii] number of mismatches allowed, usually 3, [iii] doube-filtered ``bowtie`` index name, and [iv] output filename path. Make sure your file names call the unzipped files.
 
-#### Helpful Reference
+Example code:
+<br>
+<br>
+```
+$	python final_bowtie_shell.py prt_out_filenames_20k.txt 3 batch_3_final_index batch_3_final.sam
+```
+
+This will spit out a SAM file that you can feed into ``pstacks``.
+
+<br>
+<br>
+
+### Helpful Reference
 [Brieuc, M. S., Waters, C. D., Seeb, J. E., & Naish, K. A. (2014). A dense linkage map for Chinook salmon (Oncorhynchus tshawytscha) reveals variable chromosomal divergence after an ancestral whole genome duplication event. G3: Genes| Genomes| Genetics, 4(3), 447-460.](http://www.g3journal.org/content/4/3/447.full)
 
+<br>
+<br>
 20161211NL
 
 
