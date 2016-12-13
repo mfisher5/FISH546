@@ -4,7 +4,17 @@ When analyzing data from multiple lanes that have redundant barcodes, it may be 
 
 ##### [1] Checking to see if you've added a library identifier
 
-You can use the following bash script to see whether there is already an "L" in any of the filenames in a given directory. This is useful because the script I wrote for adding the library identifier will add one even if there already has been one added, leading to annoying naming problems like filename_L1_L1_L1, etc.
+You can use the following bash [script](https://github.com/nclowell/FISH546/blob/master/Cod-Time-Series-Project/Scripts/check_lib_id.sh) to see whether there is already an "L" in any of the filenames in a given directory. This is useful because the script I wrote for adding the library identifier will add one even if there already has been one added, leading to annoying naming problems like filename_L1_L1_L1, etc. Also, this script assumes you're working with zipped fastq files, with file extensions .fq.gz, and that you want the filename followed by the library identifier followed by forward or reverse identifier (e.g., 2005_131_L1_1.fq.gz).
+
+Navigate to the directory of files that you want to check for library identifiers. Then run the script.
+
+Example code:
+<br>
+```
+$	python check_lib_id.sh
+```
+
+Meat of the script:
 
 ```
 object=($(find . -name '*L*')) # finds the first item with an L in its file name and stores it as "object"
@@ -17,18 +27,20 @@ else
 fi
 ```
 
-I also wrote a bash script that will tell you if there is a letter "L" in the filename, to see whether you have already added a library identifier.
+##### [2] Adding library identifier
+
+I wrote a custom [script](https://github.com/nclowell/FISH546/blob/master/Cod-Time-Series-Project/Scripts/add_lib_to_filename.py) that will add a library identifier like\"_L1" or "_L2" to your filenames. 
+
+Example code:
+<br>
+```
+$	python add_lib_to_filename.py ../lane1/process_radtags_out _L1 
+```
+
+<br>
+Meat of the script:
 
 ```
-# arguments
-# [1] directory name with files to rename 
-# [2] text you would like to add to the end of each filename before file extensions
-
-# assumptions
-# [1] file extention = fq.qz
-# [2] you are one directory above the directory that you want to rename the files of
-# [3] your files aren't already renamed! --- write an if else loop to make sure it hasn't been run yet when you have the time
-
 import sys
 import subprocess
 
@@ -54,19 +66,6 @@ rename_w_lib_shell = open("rename_w_lib_shell.txt", "w")
 string2 = ""
 string2 += "cd " + sys.argv[1] + "\n"
 
-
-# loop that will break the script if it's already run to make sure you don't rename files into something wrong!
-for line in contents:
-	linelist = line.strip().split(".")
-	if linelist[0][-4] == "L":
-		print "CHECK TO SEE IF YOU HAVE ALREADY RENAMED THESE FILES. SCRIPT PAUSED AS WARNING BECAUSE FILES APPEAR RENAMED."
-		sys.exit() # exit script
-	else:
-		continue
-contents.close()
-
-
-
 contents = open("dircontents.txt", "r")
 for line in contents:
 	original = line.strip()
@@ -88,4 +87,3 @@ subprocess.call(["sh rename_w_lib_shell.txt"], shell = True)
 
 
 20161211NL
-
