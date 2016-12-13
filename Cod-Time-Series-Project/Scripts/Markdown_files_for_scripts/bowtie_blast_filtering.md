@@ -12,11 +12,11 @@ To install ``BLAST``, follow the [instructions on their website](https://blast.n
 <br>
 ## ``bowtie`` filtering
 
-During ``ustacks``, we designate how many mismatches we allow between "identical" matches of reads. Many of use use a mismatch parameter value of 3. Therefore, if a locus aligns to several loci including itself, it likely has a repeat sequence and should be removed from the catalog. To do this, we must [1] build a ``bowtie`` index ("index" is somewhat interchangeable with "database," "catalog," and "reference genome" here) and [2] align our index to itself.
+During ``ustacks``, we designate how many mismatches we allow between "identical" matches of reads. Many of us use a mismatch parameter value of 3. Therefore, if a locus aligns to several loci including itself, it likely has a repeat sequence and should be removed from the catalog. To do this, we must [1] build a ``bowtie`` index ("index" is somewhat interchangeable with "database," "catalog," and "reference genome" here) and [2] align our index to itself.
 
 ##### [1] Making a fasta file for your ``bowtie`` index
 
-To build a ``bowtie`` index, Mary made a script that creates a fasta file of the tags you would like to include in your index based on the output of ``populations``. You will need the .genepop file and the batch.catalog.tags.tsv file. Open your .genepop file and copy and paste the header that has the names of all of the SNPs (with format number_number, e.g., 4_26,4_140,5_9,8_24...) into a new text file. This will be your first command line argument. Then, unzip your batch.catalog.tags.tsv file. This will be your second command line argument. Afterwards, you can run Mary's [script](https://github.com/nclowell/FISH546/blob/master/Cod-Time-Series-Project/Scripts/genBOWTIEfasta.py). 
+To build a ``bowtie`` index, Mary made a [script](https://github.com/nclowell/FISH546/blob/master/Cod-Time-Series-Project/Scripts/genBOWTIEfasta.py) that creates a fasta file of the tags you would like to include in your index based on the output of ``populations``. You will need the .genepop file and the batch.catalog.tags.tsv file. Open your .genepop file and copy and paste the header that has the names of all of the SNPs (with format number_number, e.g., 4_26,4_140,5_9,8_24...) into a new text file. This will be your first command line argument. Then, unzip your batch.catalog.tags.tsv file. This will be your second command line argument. Afterwards, you can run Mary's [script](https://github.com/nclowell/FISH546/blob/master/Cod-Time-Series-Project/Scripts/genBOWTIEfasta.py). 
 
 Example code:
 <br>
@@ -59,7 +59,7 @@ batch_3_BOWTIEout.sam
 
 ##### [4] Filtering out repetive loci with custom script
 
-Lastly, you will use Dan's custom [script](https://github.com/nclowell/FISH546/blob/master/Cod-Time-Series-Project/Scripts/parseBowtie_DD.py) for parsing the ``bowtie`` results. This script will only retain the loci that did not align to loci other than themselves by rewriting your ``bowtie`` filtered file.
+Lastly, you will use Dan's custom [script](https://github.com/nclowell/FISH546/blob/master/Cod-Time-Series-Project/Scripts/parseBowtie_DD.py) for parsing the ``bowtie`` results. This script will only retain the loci that did not align to loci other than themselves and will rewrite your ``bowtie`` filtered file.
 
 The command line arguments for this script are [i] your ``bowtie`` SAM file and [ii] the fasta file of ``bowtie``-filtered tags that you used to build your ``bowtie`` index.
 
