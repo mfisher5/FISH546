@@ -27,8 +27,7 @@ You can read the Stacks manual entry for ``cstacks`` [here](http://catchenlab.li
 
 Example Code:
 
-```$	cstacks -b 3 -s stacks_b3/2015_101_1 -s stacks_b3/2005_464_1 -s stacks_b3/2010_184_1 -s stacks_b3/2005_459_1 -o stacks_b3 -n 3 -p 5
-```
+```$	cstacks -b 3 -s stacks_b3/2015_101_1 -s stacks_b3/2005_464_1 -s stacks_b3/2010_184_1 -s stacks_b3/2005_459_1 -o stacks_b3 -n 3 -p 5```
 
 ##### Running ``cstacks`` using a custom script
 
