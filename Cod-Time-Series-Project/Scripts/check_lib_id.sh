@@ -11,8 +11,8 @@ object=($(find . -name '*L*')) # finds the first item with an L in its file name
 length=${#object} # gets length of this object in characters
 if [ $length -ge 1 ] # if the length of the object is more than 0, then there is a file name with an L in it
 then
-	echo "you added the L" # so print a notice of this
+	echo "At least one of your filenames already as an L in it. Check your filenames before adding a library identifier." # so print a notice of this
 else
-	echo "you haven't added the L" # if the length of the object is 0, then there isn't a filename with an L yet, so print notice
+	echo "None of your filenames have an L in them. It is safe to add a library identifier." # if the length of the object is 0, then there isn't a filename with an L yet, so print notice
 fi	
 
