@@ -20,6 +20,7 @@ pstacks -t file_type -f file_path [-o path] [-i id] [-m min_cov] [-p num_threads
 <br>--pct_aln [num] — require read alignments to use at least this percentage of the read (default 85%).
 <br>--keep_sec_alns — keep secondary alignments (default: false, only keep primary alignments).
 
+You can read the ``Stacks`` manual entry for ``pstacks`` [here](http://catchenlab.life.illinois.edu/stacks/comp/pstacks.php).
 
 Example code:
 <br>
