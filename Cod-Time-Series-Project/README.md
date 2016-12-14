@@ -13,7 +13,14 @@ If heat is the selection factor that is causing a northward range shift, then a 
 The goal of this project is to measure adaptive difference within and between cohorts of Pacific cod in the Salish Sea using RADseq data from 2005, 2009, 2010, and 2014. The specific objectives are **(1)** to build loci de novo for each individual, **(2)** assemble a catalog of loci with a subset of individuals to call single nucleotide polymorphisms (SNPs), **(3)** estimate heterozygosity and Fst between cohorts, **(4)** test to see whether particular alleles sort with cohorts associated with particular temperature regimes, and **(5)** if any loci do sort, align them to the Atlantic cod (*Gadus morhua*) genome to see whether these loci occur within genes associated with temperature regulation.
 
 ##### The Stacks pipeline #####
-Much of the data analysis work will be done using the [Stacks pipeline](http://catchenlab.life.illinois.edu/stacks/). The major programs that make up the milestones of the Stacks pipeline are (1) ``process_radtags``, (2) ``ustacks``, (3) ``cstacks``, (4) ``sstacks``, and (5) ``populations``.
+Much of the data analysis work will be done using the [``Stacks`` pipeline](http://catchenlab.life.illinois.edu/stacks/). The major programs that make up the milestones of the Stacks pipeline are (1) ``process_radtags``, (2) ``ustacks``, (3) ``cstacks``, (4) ``sstacks``, and (5) ``populations``. In addition, we use ``bowtie`` and ``BLAST`` for filtering our loci, and a custom script for filtering out any non-biallelic loci, or loci with particular minor allele values, etc.
+
+Here's a flow chart that goes through major steps of the the pipeline.
+
+<br>
+![image](https://github.com/nclowell/FISH546/blob/master/Cod-Time-Series-Project/Notebooks/images_for_notebooks/Screen%20Shot%202016-12-14%20at%201.02.11%20PM.png?raw=true)
+
+Here are some short descriptions of the different programs in the ``Stacks`` pipeline.
 
 ``process_radtags`` is a program that renames each file by the barcode of the sample and allows you to filter the data by quality thresholds. The input is a fasta file, and the output is a fastq file. The previous user of my data already ran it through ``process_radtags``. My notebook for running ``process_radtags`` on my data is [here](https://github.com/nclowell/FISH546/blob/master/Cod-Time-Series-Project/Notebooks/Cod-Time-Series-Project%20-%20process_radtags.ipynb) and my markdown file to interpret the script is [here](https://github.com/nclowell/FISH546/blob/master/Cod-Time-Series-Project/Scripts/Markdown_files_for_scripts/pypipe_processtags.md).
 
@@ -42,13 +49,13 @@ Much of the data analysis work will be done using the [Stacks pipeline](http://c
 
 <br>
 
-In our lab, we run RAD data through this pipeline and then return to ``cstacks`` and change the way the program calls heterozygotes. Then, we rerun ``sstacks`` and ``populations``. We also have several in-house scripts we use to add additional quality filtering to the final genotype calls.
+``bowtie`` is an alignment program and ``BLAST`` a database search tool. We use these programs to filter out highly repetitive loci, which show up as loci that align or ``BLAST`` to several loci in addition to themselves.
 
 ##### Statistics #####
 
-Our lab uses a collection of R packages to calculate statistics of population differentiation, instead of using the statistics produced by the Stacks pipeline.
+Our lab uses Genepop and a collection of R packages to calculate statistics of population differentiation, instead of using the statistics produced by the Stacks pipeline.
 
-Our lab collected environmental data on temperature regimes for the years these samples were collected. I will use this data to see whether any outlier loci sort with temperature regime, and whether those loci match to temperature regulation related genes in the Atlantic cod genome.
+Our lab collected environmental data on temperature regimes for the years these samples were collected. I did not have time this quarter to use this data to see whether any outlier loci sort with temperature regime, and whether those loci match to temperature regulation related genes in the Atlantic cod genome. Those would be some next steps.
 
 ##### Directory Structure #####
 
