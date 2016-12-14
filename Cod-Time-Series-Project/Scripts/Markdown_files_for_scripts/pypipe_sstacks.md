@@ -1,6 +1,8 @@
 ## pypipe_sstacks.py
 
-<br>
+
+
+
 ##### Purpose
 ``sstacks`` is a program in the ``Stacks`` pipeline that genotypes each individual using a catalog of loci created in ``cstacks``. It creates .matches files.
 
@@ -29,7 +31,7 @@ Example code:
 
 ##### Running ``sstacks`` using a custom script
 
-I wrote a script for producing a ``sstacks`` shell script and running it. The command line arguments are [i] a text file with the names of the files that came out of ``process_radtags``, each on its own line, [ii] batch number, [iii] filepath to catalog name, [iv] filepath of input files, and [v] number of threads to use.
+I wrote a [ script](https://github.com/nclowell/FISH546/blob/master/Cod-Time-Series-Project/Scripts/Markdown_files_for_scripts/pypipe_sstacks.md) for producing a ``sstacks`` shell script and running it. The command line arguments are [i] a text file with the names of the files that came out of ``process_radtags``, each on its own line, [ii] batch number, [iii] filepath to catalog name, [iv] filepath of input files, and [v] number of threads to use.
 
 Example code:
 <br>
