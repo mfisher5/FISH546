@@ -1,4 +1,4 @@
-## Running ``ustacks``
+## pypipe_ustacks.py
 
 
 ##### Purpose
@@ -127,4 +127,4 @@ newfile2.close()
 subprocess.call(['sh ustacks_shell.txt'], shell=True)
 
 ```
-
+20161214NL

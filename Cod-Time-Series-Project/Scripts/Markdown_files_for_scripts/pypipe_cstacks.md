@@ -31,7 +31,7 @@ Example Code:
 
 ##### Running ``cstacks`` using a custom script
 
-I wrote a script for producing a ``cstacks`` shell script and running it. The command line arguments are [i] a text file with the filenames that came out of ``process_radtags``, [ii] the directory of input files, [iii] the number of individuals for your catalog, [iv] batch number, [v] output directory, [vi] number of mismatches allowed, and [vii] number of threads to use.
+I wrote a [script](https://github.com/nclowell/FISH546/blob/master/Cod-Time-Series-Project/Scripts/pypipe_cstacks.py) for producing a ``cstacks`` shell script and running it. The command line arguments are [i] a text file with the filenames that came out of ``process_radtags``, [ii] the directory of input files, [iii] the number of individuals for your catalog, [iv] batch number, [v] output directory, [vi] number of mismatches allowed, and [vii] number of threads to use.
 
 Example code:
 
