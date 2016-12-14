@@ -2,17 +2,17 @@
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/9/96/Gadus_macrocephalus.png)
 
-#### Background #####
+#### Background 
 
 The Pacific cod (*Gadus macrocephalus*) population in the Salish Sea has significantly diminished since the 1980's, and may have disappeared entirely. A leading hypothesis suggests that these waters were already at the southern-most and warmest extent of their range. Perhaps the waters have warmed enough that Pacific cod have shifted their range to avoid unfavorable conditions.
 
-If heat is the selection factor that is causing a northward range shift, then a first test of this hypothesis would be to see if cohorts of Pacific cod in the Salish Sea from distinctly hot years demonstrate higher adaptive differentiation than cohorts from distinctly cold temperature regimes. Futher evidence to support this hypothesis would be particular outlier loci sorting with temperature regime, and sorting loci occuring in genes that relate to temperature regulation.
+If warmer temperature is the selection factor that is causing a northward range shift, then a first test of this hypothesis would be to see if cohorts of Pacific cod in the Salish Sea from distinctly hot years demonstrate higher adaptive differentiation than cohorts from distinctly cold temperature regimes. Futher evidence to support this hypothesis would be particular outlier loci sorting with temperature regime, and sorting loci occuring in genes that relate to temperature regulation.
 
-##### Goal #####
+##### Goal 
 
 The goal of this project is to measure adaptive difference within and between cohorts of Pacific cod in the Salish Sea using RADseq data from 2005, 2009, 2010, and 2014. The specific objectives are **(1)** to build loci de novo for each individual, **(2)** assemble a catalog of loci with a subset of individuals to call single nucleotide polymorphisms (SNPs), **(3)** estimate heterozygosity and Fst between cohorts, **(4)** test to see whether particular alleles sort with cohorts associated with particular temperature regimes, and **(5)** if any loci do sort, align them to the Atlantic cod (*Gadus morhua*) genome to see whether these loci occur within genes associated with temperature regulation.
 
-##### The Stacks pipeline #####
+##### The ``Stacks`` pipeline 
 Much of the data analysis work will be done using the [``Stacks`` pipeline](http://catchenlab.life.illinois.edu/stacks/). The major programs that make up the milestones of the Stacks pipeline are (1) ``process_radtags``, (2) ``ustacks``, (3) ``cstacks``, (4) ``sstacks``, and (5) ``populations``. In addition, we use ``bowtie`` and ``BLAST`` for filtering our loci, and a custom script for filtering out any non-biallelic loci, or loci with particular minor allele values, etc.
 
 Here's a flow chart that goes through major steps of the the pipeline.
@@ -51,15 +51,19 @@ Here are some short descriptions of the different programs in the ``Stacks`` pip
 
 ``bowtie`` is an alignment program and ``BLAST`` a database search tool. We use these programs to filter out highly repetitive loci, which show up as loci that align or ``BLAST`` to several loci in addition to themselves.
 
-##### Statistics #####
+##### Statistics 
 
 Our lab uses Genepop and a collection of R packages to calculate statistics of population differentiation, instead of using the statistics produced by the Stacks pipeline.
 
 Our lab collected environmental data on temperature regimes for the years these samples were collected. I did not have time this quarter to use this data to see whether any outlier loci sort with temperature regime, and whether those loci match to temperature regulation related genes in the Atlantic cod genome. Those would be some next steps.
 
-##### Directory Structure #####
+##### Scripts
 
-Within my class repo FISH546, I have a directory for this project. Within this directory, I made a directory for **Data** that has directories for raw data, processed data, and  metadata. Raw data is never altered and stored in its own directory to protect it. Metadata includes information on the individual fish, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. However, after making my directory structure I realized that my data files are too large and that I would never be pushing them to Git Hub, so I stored 3 (of ~100) on the Owl server to use in class as an example.
+I used some custom scripts written  by my lab mates, and wrote many custom scripts myself. You can see those in [this folder](https://github.com/nclowell/FISH546/tree/master/Cod-Time-Series-Project/Scripts).
+
+##### Directory Structure 
+
+Within my class repo FISH546, I have a directory for this project. Within this directory, I made a directory for **Data** that has directories for processed data and  metadata. I never pushed my raw data to Git Hub because it is too large. My raw data lives on a hard drive and is never altered. Metadata includes information on the individual fish, DNA quality, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. However, after making my directory structure I realized that my data files are too large and that I would never be pushing them to Git Hub, so I stored 3 (of ~100) on the Owl server to use in class as an example.
 
 Within the project directory, I also made a directory for **Analyses**. This directory has a directory for fast qc results, which describe the quality of the sequence data. My lab uses R packages to calculate statistics instead of the Stacks pipeline. This is where I will store those results.
 
