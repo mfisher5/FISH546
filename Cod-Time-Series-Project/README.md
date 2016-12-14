@@ -12,6 +12,8 @@ If warmer temperature is the selection factor that is causing a northward range 
 
 The goal of this project is to measure adaptive difference within and between cohorts of Pacific cod in the Salish Sea using RADseq data from 2005, 2009, 2010, and 2014. The specific objectives are **(1)** to build loci de novo for each individual, **(2)** assemble a catalog of loci with a subset of individuals to call single nucleotide polymorphisms (SNPs), **(3)** estimate heterozygosity and Fst between cohorts, **(4)** test to see whether particular alleles sort with cohorts associated with particular temperature regimes, and **(5)** if any loci do sort, align them to the Atlantic cod (*Gadus morhua*) genome to see whether these loci occur within genes associated with temperature regulation.
 
+My quarter goal was to get through (1-3), which I ***mostly*** did. If you scroll to the bottom of this readme, there is a short narrative on what I've accomplished this quarter with links to notebooks, scripts, etc.
+
 ##### The ``Stacks`` pipeline 
 Much of the data analysis work will be done using the [``Stacks`` pipeline](http://catchenlab.life.illinois.edu/stacks/). The major programs that make up the milestones of the Stacks pipeline are (1) ``process_radtags``, (2) ``ustacks``, (3) ``cstacks``, (4) ``sstacks``, and (5) ``populations``. In addition, we use ``bowtie`` and ``BLAST`` for filtering our loci, and a custom script for filtering out any non-biallelic loci, or loci with particular minor allele values, etc.
 
