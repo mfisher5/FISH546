@@ -57,10 +57,6 @@ Our lab uses Genepop and a collection of R packages to calculate statistics of p
 
 Our lab collected environmental data on temperature regimes for the years these samples were collected. I did not have time this quarter to use this data to see whether any outlier loci sort with temperature regime, and whether those loci match to temperature regulation related genes in the Atlantic cod genome. Those would be some next steps.
 
-##### Scripts
-
-I used some custom scripts written  by my lab mates, and wrote many custom scripts myself. You can see those in [this folder](https://github.com/nclowell/FISH546/tree/master/Cod-Time-Series-Project/Scripts).
-
 ##### Directory Structure 
 
 Within my class repo FISH546, I have a directory for this project. Within this directory, I made a [directory for **Data**](https://github.com/nclowell/FISH546/tree/master/Cod-Time-Series-Project/Data/metadata) which only includles metadata, because my raw and processed data are too large to push to Git Hub. Metadata includes information on the individual fish, DNA quality, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. My raw and processed data live on a hard drive, with the raw data in its own directory where it is never altered. 
