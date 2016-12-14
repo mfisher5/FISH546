@@ -1,12 +1,13 @@
 ##pypipe_processtags.py 
 
 <br><br>
-##### PURPOSE
+##### Purpose
 This script is for making directories you will need to store files after each milestone in the Stacks pipeline. In addition, it will run ``process_radtags`` on a given raw file from the sequencing center.
 
+Note! I wrote this file before I had a lot of experience running the ``Stacks`` pipeline, and now I prefer keeping all of my outputs of the Stacks steps in one folder. Adjust as you see fit.
 
-#####WHEN RUNNING THIS SCRIPT, YOUR INPUTS AT THE COMMAND LINE ARE:
-python  
+
+Command line arguemnts are 
 {0}[name of script file]
 <br>{1}[number of files you'll be running through process_radtags]
 <br>{2}[directory with raw sequence files]
@@ -16,10 +17,10 @@ python
 <br>{6}[filepath to text file with barcodes]
 <br>{7}[length to trim sequences based on fastqc results]
 
-##### YOUR OUTPUTS WILL BE:
+##### Outputs
 Named directories and a group of sequence files (you determine file type) that is demultiplexed,trimmed, and cleaned
 
-##### DEPENDENCIES
+##### Assumptions and Dependencies
 [1] You want the following # and names of directories
 <br>[2] You used restriction enzyme sbf1
 <br>[3] You have quality scores encoded with Phred33
@@ -105,4 +106,4 @@ prt_file.close()
 # h — display this help messsage.
 ```
 
-
+20161214NL
