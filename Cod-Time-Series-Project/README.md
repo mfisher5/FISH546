@@ -52,22 +52,17 @@ Our lab collected environmental data on temperature regimes for the years these 
 
 ##### Directory Structure #####
 
-Within my class repo FISH546, I have a directory for this project. Within this directory, I made a directory for **Data** that has directories for raw data, processed data, and  metadata. Raw data is never altered and stored in its own directory to protect it. Metadata includes information on the individual fish, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. However, my data files are too large so I stored 3 (of ~100) on the Owl server to use in class as an example.
+Within my class repo FISH546, I have a directory for this project. Within this directory, I made a directory for **Data** that has directories for raw data, processed data, and  metadata. Raw data is never altered and stored in its own directory to protect it. Metadata includes information on the individual fish, environmental conditions, etc. Processed data is for data that has made it through part of the pipeline. However, after making my directory structure I realized that my data files are too large and that I would never be pushing them to Git Hub, so I stored 3 (of ~100) on the Owl server to use in class as an example.
 
 Within the project directory, I also made a directory for **Analyses**. This directory has a directory for fast qc results, which describe the quality of the sequence data. My lab uses R packages to calculate statistics instead of the Stacks pipeline. This is where I will store those results.
 
-Within the project directory, I also made a **Notebooks** directory that contains all of my Jupyter notebooks for the project, and their checkpoints. However, I find that Jupyter causes more problems for me than I'd like. I'm hoping to annotate my work in python script comments and afterwards interpret it more clearly in a Jupyter notebook.
+Within the project directory, I also made a **Notebooks** directory that contains all of my Jupyter notebooks for the project, and their checkpoints.
 
-Within the project directory, I also made a **Scripts** directory that will eventually contain any scripts associated with the project. I expect to have a custom script for each stage of the Stacks pipeline by the end of the quarter. 
+Within the project directory, I also made a **Scripts** directory that will eventually contain any scripts associated with the project. I expect to have a custom script for each stage of the Stacks pipeline by the end of the quarter. Within this folder, there is also a **Markdown_files_for_scripts** directory, where I've made interpretive markdown files to explain why and how to use my custom scripts.
 
+#### End of Quarter Progress
 
-## Project Timeline & Progress ##
+I learned what our whole lab's pipeline is for RADseq data and successfully completed most steps, but was unable to execute them on all of my data by the end of the quarter. 
 
-**Week 4 Goal** is it to have a script for running ustacks.
-
-In **Week 4** I have made a custom python script for ustacks that can be run at the command line with a few arguments. The script renames files from barcode names to sample names, then creates a shell script to run each sample through the command line, then runs the shell script creating 4 output files per input file. I've also started on making the custom python script for cstacks. These scripts are located in my Scripts directory. It's a lot easier for me to work in a python script than in Jupyter Notebook, so I'm trying to keep those annotated and clean because I know they're not as pretty as the notebook! I'm hoping to put everything in a notebook toward the end so it's more readable to others. I just moved a few sample files of data to the Owl server so that Steven can run the scripts to see how they work, but I haven't yet changed the file path names so that they can work from Owl.
-
-**Week 5 Goal** is to have a script for running cstacks.
-
-In **Week 5** I updated this README.md according to Steven's feedback as best as possible. I also wrote a script for using ``cstacks`` and ``process_radtags``. I made three new Jupyter Notebooks to show the purpose, inputs, outputs, and text of the scripts I'm using to make it more readable to everyone that isn't me.
+However, I did still accomplish a lot this quarter. I learned how to use all of the basic programs in the Stacks pipeline (``ustacks``, ``pstacks``, ``cstacks``, ``sstacks``, and ``populations``), learned how to use ``bowtie`` for filtering loci and making alignments, learned how to use ``BLAST`` for filtering loci, relearned a lot of python and learned some bash scripting, wrote python scripts that produce shell scripts and run them for each step, wrote a bash script, solved a problem of few retained loci at the end of ``populations``, and wrote interpretive markdown files for most of my scripts. 
 
