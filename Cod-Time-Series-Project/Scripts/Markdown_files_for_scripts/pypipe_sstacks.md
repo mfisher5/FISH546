@@ -5,7 +5,7 @@
 ``sstacks`` is a program in the ``Stacks`` pipeline that genotypes each individual using a catalog of loci created in ``cstacks``. It creates .matches files.
 
 ##### Documentation
-The most important command line arguments for ``sstacks`` are 
+The most important command line arguments for ``sstacks`` are [i] -b for batch number, [ii]-c for catalog filepath, [iii] -s for each sample you want to match against your catalog, and [iv] -p for number of threads.
 
 Here is more information on the other main command line arguments for ``sstacks``:
 
