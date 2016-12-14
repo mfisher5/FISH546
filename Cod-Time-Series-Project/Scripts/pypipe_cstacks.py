@@ -9,8 +9,8 @@
 #### WHEN RUNNING THIS SCRIPT, INPUTS AT THE COMMAND LINE ARE:
 # python 
 # {0}[pypipe_cstacks.py] 
-# {1}[shell script with changed file names] 	
-# {2}[directory of input files] 
+# {1}[text file with names of files that came out of process rad tags] 	
+# {2}[directory of input files, after process rad tags] 
 # {3}[# individuals for cstacks] 
 # {4}[batch number] 
 # {5}[output directory] 
@@ -36,8 +36,8 @@ import subprocess
 
 ### --- [B] Count lines in each sequence file
 
-myfile = open(sys.argv[1], "r")	#open the file with your list of barcodes and sample IDs
-lines = myfile.readlines()[2:]
+myfile = open(sys.argv[1], "r")	# open file w file names that you got from ls > .txt
+lines = myfile.readlines()
 
 
 dirfrom = sys.argv[2] # get directory for input files
@@ -46,13 +46,12 @@ firststr = "cd " + sys.argv[2] + "\n" # write first line of shell to cd to this 
 filestring = ""
 filestring += firststr
 
-samplename_list = [] # to be used in loop later in this script
+filename_list = [] # to be used in loop later in this script
 
-for line in lines: 					#for each line in the barcode file
-	linelist = line.strip().split()		#make a list of character strings broken by tabs
-	sampID = linelist[2]				#pick out file name
-	samplename_list.append(sampID)
-	newstring = "gunzip -c " + sampID + " | wc -l >> ../cstacks_linecount.txt\n" # make line of code to run at command line
+for line in lines: 					# loop to get file names, and stick into script for counting lines
+	filename = line.strip()		
+	filename_list.append(filename)
+	newstring = "gunzip -c " + filename + " | wc -l >> ../cstacks_linecount.txt\n" # make line of code to run at command line
 	filestring += newstring # add to a list of strings we'll write to a file
 myfile.close()
 
@@ -64,11 +63,10 @@ newfile.close()
 
 # run shell script that will calculate line counts
 # subprocess.call(['sh cstacks_linecount_shell.txt'], shell=True)
-# 
 
-# 
-# 
-# 
+
+
+
 # ### --- [C] Get sample names for specified # of samples with most sequence reads 
 # 
 linecounts = open("cstacks_linecount.txt", "r") # read in line counts file
@@ -81,26 +79,27 @@ for line in linecounts:
 list_samp_ct = [] # initiate empty list
 i = 0 # start counter
 
-# --- CHECK^ if lists look normal
-# print "sample name list "
-# print samplename_list
-# print "line counts list "
+    
+# len1 = len(filename_list)
+# print "The filename list is " + str(len1) + " items long."
+# print filename_list
+# 
+# len1 = len(linecounts_list)
+# print "The linecounts list is " + str(len1) + " items long."
 # print linecounts_list
 
+
 for item in linecounts_list:
-	new_item = [samplename_list[i], linecounts_list[i]]
+	new_item = [filename_list[i], linecounts_list[i]]
 	list_samp_ct.append(new_item)
 	i += 1
 	
 def getKey(item): # so that sorted will sort by second item in list
 	return item[1]
 sortedlist = sorted(list_samp_ct, key = getKey, reverse = True)
-# print sortedlist # CHECK^
 
 with open('all_sorted_name_counts.txt', 'w') as file:
-    file.writelines('\t'.join(i) + '\n' for i in sortedlist) # makes file
-    
-
+	file.writelines('\t'.join(i) + '\n' for i in sortedlist) # makes file
 
 
 
@@ -108,24 +107,20 @@ with open('all_sorted_name_counts.txt', 'w') as file:
 
 
 # ---------
-# I had an automated way to pick the ten samples with most reads, but my ustacks run on 20161108 failed halfway throgh
-# and so I have less samples. So I manually picked ten with the most reads of the files that went through ustacks
-
-# so hash comment this out in the future!
+# Picking the individuals to use in cstacks is actually really hard to automate, so I think I will tend to 
+# manually make the file of individuals for cstacks. It needs to look like a text file where the first
+# column 
 
 
 samples_for_use = []
-foruse = open("for_use_1130.txt", "r")
+foruse = open("files_for_cstacks_b3.txt", "r")
 for line in foruse:
 	linelist = line.strip().split()
 	samples_for_use.append(linelist[0])
 foruse.close()
 
 
-
 #----------
-
-
 
 cstacks_shell = ""
 dirstr = "cd " + sys.argv[2] + "\n"

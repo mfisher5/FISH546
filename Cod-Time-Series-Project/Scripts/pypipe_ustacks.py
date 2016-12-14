@@ -13,6 +13,9 @@
 # {1}[barcodes & samples textfile] 
 # {2}[start directory] 
 # {3}[end directory]
+# {4}[-m, stacking depth, usually 10]
+# {5}[-M, maximum distance allowed between nucleotides, default 2, usually 3]
+# {6}[-p, num threads]
 # 
 ### DEPENDENCIES
 # 
@@ -91,13 +94,13 @@ for line in lines: 			#for each line in the barcode file
 	linelist=line.strip().split()	
 	sampID = linelist[2] 					#save the second object as "sampID"
 	if ID_int < 10: 
-		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i 00" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i 00" + str(ID_int) + " -m " + sys.argv[4] + " -M " + sys.argv[5] + " -p " + sys.argv[6] + "\n"
 								#create a line of code for ustacks that includes the new sample ID (with 2 leading 0s)
 	elif ID_int >= 10 & ID_int < 100: 
-		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i 0" + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i 0" + str(ID_int) + " -m " + sys.argv[4] + " -M " + sys.argv[5] + " -p " + sys.argv[6] + "\n"
 								#create a line of code for ustacks that includes the new sample ID (with 1 leading 0)
 	else: 
-		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i " + str(ID_int) + " -m 5 -M 3 -p 10" + "\n"
+		ustacks_code = "ustacks -t gzfastq -f " + dirfrom + "/" + sampID + " -r -d -o " + dirto + " -i " + str(ID_int) + " -m " + sys.argv[4] + " -M " + sys.argv[5] + " -p " + sys.argv[6] + "\n"
 								#create a line of code for ustacks that includes the new sample ID (with no leading 0s)
 	newfile2.write(ustacks_code)	#append this new line of code to the output file
 	ID_int += 1

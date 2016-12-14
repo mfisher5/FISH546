@@ -10,7 +10,7 @@
 ### WHEN RUNNING THIS SCRIPT, YOUR INPUTS AT THE COMMAND LINE ARE:
 # python  
 # {0}[pipeline filename] 
-# {1}[shell script w sample names]
+# {1}[files that came out of process rad tags]
 # {2}[batch ID number]
 # {3}[filepath to directory with catalog filename without file extension]
 # {4}[filepath to directory w ustacks output files per sample]
@@ -39,18 +39,20 @@ import sys
 
 trim_names = [] # initiate list
 
-rename_shell = open(sys.argv[1], "r") # open file w filenames 
-lines = rename_shell.readlines()[2:]
+filenames = open(sys.argv[1], "r") # open file w filenames 
 
-for line in lines:
-	linelist = line.strip().split()
-	trim_name = linelist[2].rsplit(".",2)[0]
+for line in filenames:
+	name = line.strip()
+	trim_name = name.rsplit(".",2)[0]
 	trim_names.append(trim_name)
-# print trim_names # CHECK^
 
-rename_shell.close()
+print trim_names # CHECK^
+
+filenames.close()
 
 numsamples = len(trim_names)
+
+print "You are working with " + str(numsamples) + " samples."
 
 newfile = open("sstacks_shell.txt", "w") # create new file for shell script
 
